@@ -7,8 +7,4 @@ JsonData is a [Dynamo](http://www.dynamobim.org) package to provide extra functi
 
 For extensive example of the package functionalities, open the `JsonDataSample.dyn` file that can be found on the package folder.
 
-<<<<<<< HEAD
 ![JsonData sample file](samples/images/JsonDataSample.png)
-=======
-![JsonData sample file](samples\images\JsonDataSample.png)
->>>>>>> 427718c12b1bc631916b7f1b3ba0b14034f390b7
