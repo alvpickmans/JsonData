@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<migrations>
+  <priorNameHint>
+    <oldName>JsonElements.JsonObject.SortByKey</oldName>
+    <newName>JsonElements.JsonObject.SortKeys</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.ByKeysAndValues</oldName>
+    <newName>JsonData.Elements.JsonObject.ByKeysAndValues</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.ValueByKey</oldName>
+    <newName>JsonData.Elements.JsonObject.ValueByKey</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.Add</oldName>
+    <newName>JsonData.Elements.JsonObject.Add</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.Remove</oldName>
+    <newName>JsonData.Elements.JsonObject.Remove</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.Merge</oldName>
+    <newName>JsonData.Elements.JsonObject.Merge</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.ValueByKey</oldName>
+    <newName>JsonData.Elements.JsonObject.ValueByKey</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.SortKeys</oldName>
+    <newName>JsonData.Elements.JsonObject.SortKeys</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.SortByKeyValues</oldName>
+    <newName>JsonData.Elements.JsonObject.SortByKeyValues</newName>
+  </priorNameHint>
+<priorNameHint>
+    <oldName>JsonElements.JsonObject.FilterByKeyAndValue</oldName>
+    <newName>JsonData.Elements.JsonObject.FilterByKeyAndValue</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonObject.Keys</oldName>
+    <newName>JsonData.Elements.JsonObject.Keys</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonObject.Values</oldName>
+    <newName>JsonData.Elements.JsonObject.Values</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonObject.Size</oldName>
+    <newName>JsonData.Elements.JsonObject.Size</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonArray.Create</oldName>
+    <newName>JsonData.Elements.JsonArray.ByElements</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonArray.Elements</oldName>
+    <newName>JsonData.Elements.JsonArray.Elements</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonElements.JsonArray.Size</oldName>
+    <newName>JsonData.Elements.JsonArray.Size</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonTools.JsonTools.ParseJsonString</oldName>
+    <newName>JsonData.Utilities.Parse.JsonString</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonTools.JsonTools.FromJsonFile</oldName>
+    <newName>JsonData.Utilities.Read.FromJsonFile</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonTools.JsonTools.ToJsonFile</oldName>
+    <newName>JsonData.Utilities.Write.ToJsonFile</newName>
+  </priorNameHint>
+</migrations>

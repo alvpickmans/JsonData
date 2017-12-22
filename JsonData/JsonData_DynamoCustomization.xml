@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+  <assembly>
+    <name>JsonData</name>
+  </assembly>
+    <namespaces>
+      <namespace name="JsonData.Elements">
+        <category>JsonData.Elements</category>
+      </namespace>
+      <namespace name="JsonData.Utilities">
+        <category>JsonData.Utilities</category>
+      </namespace>
+    </namespaces>
+</doc>
