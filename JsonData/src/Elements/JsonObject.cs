@@ -5,8 +5,6 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics;
-//using JsonTools;
 #endregion
 
 namespace JsonData.Elements
@@ -325,9 +323,7 @@ namespace JsonData.Elements
         /// </search> 
         public JsonObject Add(string[] key, dynamic[] value, [DefaultArgument("true")] bool nesting, [DefaultArgument("JsonOption.None")] JsonOption jsonOption)
         {
-            List<string> clonedKeys = new List<string>(Keys);
-            List<dynamic> clonedValues = new List<dynamic>(Values);
-            JsonObject newJson = new JsonObject(clonedKeys, clonedValues, nesting, jsonOption);
+            JsonObject newJson = new JsonObject(Keys, Values, nesting, jsonOption);
             for (var i = 0; i < key.Length; i++)
             {
                 string k = key[i];
