@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 #endregion
 
-namespace JsonDataUI
+namespace JsonDataUI.JsonObject
 {
 
     [NodeName("JsonOptions")]

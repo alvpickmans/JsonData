@@ -457,6 +457,7 @@ namespace JsonData.Elements
             }
         }
 
+        //TODO: Handling of nesting IMPORTANT
         /// <summary>
         /// Sort the JsonObject alphabetically by its keys.
         /// </summary>
@@ -467,9 +468,10 @@ namespace JsonData.Elements
                 .OrderBy(j => j.Key);
             List<string> keys = sorted.Select(item => item.Key).ToList();
             List<object> values = sorted.Select(item => item.Value).ToList();
-            return new JsonObject(keys, values, true, JsonOption.None);
+            return new JsonObject(keys, values, false, JsonOption.None);
         }
 
+        //TODO: Handling of nesting IMPORTANT
         /// <summary>
         /// Sorts a list of JsonObjects by the ascending order of the values associated with the given key.
         /// </summary>

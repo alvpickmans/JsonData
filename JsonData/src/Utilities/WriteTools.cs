@@ -55,13 +55,15 @@ namespace JsonData.Utilities
         /// <param name="filepath">File path for XML file</param>
         /// <param name="root">Value to wrap XML in case is necesary.
         /// More info https://www.newtonsoft.com/json/help/html/ConvertingJSONandXML.htm#! </param>
-        public static void ToXMLFile(Elements.JsonObject jsonObject, string filepath, string root= "")
+        /// <returns name="filepath">Returns the filepath if write operation is succesful</returns>
+        public static string ToXMLFile(Elements.JsonObject jsonObject, string filepath, string root= "")
         {
            
             try
             {
                 string xml = Parse.JsonToXML(jsonObject, root);
                 File.WriteAllText(filepath, xml.ToString());
+                return filepath;
             }
             catch(Exception e )
             {

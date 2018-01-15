@@ -127,6 +127,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\System.Windows.Interactivity.dll</HintPath>
@@ -186,9 +187,60 @@
     <Content Include="packages\JsonData\bin\JsonData.Migrations.xml" />
     <Content Include="packages\JsonData\bin\JsonData.pdb" />
     <Content Include="packages\JsonData\bin\JsonData.XML" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.ByKeysAndValues.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Keys.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Remove.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Values.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.ByKeysAndValues.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Keys.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Remove.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Values.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Size.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Size.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Add.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.FilterByKeyAndValue.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.JsonOptions.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Merge.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortByKeyValue.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortKeys.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.ValueByKey.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Add.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.FilterByKeyAndValue.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.JsonOptions.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Merge.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortByKeyValue.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortKeys.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.ValueByKey.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.ByElements.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Elements.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Size.Large.png" />
+    <None Include="Resources\Images\Large\JsonDataUI.Elements.JsonObject.JsonOptions.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.ByElements.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.Elements.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.Size.Small.png" />
+    <None Include="Resources\Images\Small\JsonDataUI.Elements.JsonObject.JsonOptions.Small.png" />
+    <None Include="Resources\Images\Small\JsonDataUI.JsonDataUI.JsonOptions.Small.png" />
+    <None Include="Resources\Images\Large\JsonDataUI.JsonDataUI.JsonOptions.Large.png" />
+    <None Include="Resources\Images\Large\JsonDataUI.JsonOptions.Large.png" />
+    <None Include="Resources\Images\Small\JsonDataUI.JsonOptions.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Read.FromJsonFile.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Read.FromXMLFile.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Write.ToJsonFile.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Write.ToXMLFile.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Read.FromJsonFile.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Read.FromXMLFile.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToJsonFile.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToXMLFile.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonString.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToXML.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.XMLString.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonString.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToXML.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.XMLString.Small.png" />
     <Content Include="samples\images\JsonDataHeader.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="JsonDataImages.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -205,6 +257,17 @@
     <Copy SourceFiles="@(Xmls)" DestinationFolder="$(ProjectDir)packages\$(ProjectName)\bin\" />
   </Target>
   <Target Name="AfterBuild">
+    <!-- Get System.Drawing.dll -->
+    <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
+      <Output TaskParameter="FullFrameworkReferenceAssemblyPaths" PropertyName="FrameworkAssembliesPath" />
+    </GetReferenceAssemblyPaths>
+    <!-- Get assembly -->
+    <GetAssemblyIdentity AssemblyFiles="$(OutDir)$(TargetName).dll">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyInfo" />
+    </GetAssemblyIdentity>
+    <!-- Generate customization dll -->
+    <GenerateResource UseSourcePath="true" Sources="$(ProjectDir)JsonDataImages.resx" OutputResources="$(ProjectDir)JsonDataImages.resources" References="$(FrameworkAssembliesPath)System.Drawing.dll" />
+    <AL TargetType="library" EmbedResources="$(ProjectDir)JsonDataImages.resources" OutputAssembly="$(OutDir)JsonData.customization.dll" Version="%(AssemblyInfo.Version)" />
     <ItemGroup>
       <Dlls Include="$(OutDir)*.dll" />
       <Pdbs Include="$(OutDir)*.pdb" />
