@@ -103,6 +103,7 @@
       <HintPath>..\packages\Prism.4.1.0.0\lib\NET40\Microsoft.Practices.Prism.Interactivity.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
@@ -237,6 +238,14 @@
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonString.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToXML.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.XMLString.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.CSVString.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Read.FromCSVFile.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.CSVString.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Read.FromCSVFile.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToCSV.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToCSVFile.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToCSV.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Write.ToCSVFile.Large.png" />
     <Content Include="samples\images\JsonDataHeader.png" />
   </ItemGroup>
   <ItemGroup>

@@ -8,6 +8,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.XPath;
+using Microsoft.VisualBasic.FileIO;
 using JsonData;
 //using JsonElements;
 #endregion
@@ -63,6 +64,27 @@ namespace JsonData.Utilities
             try
             {
                 return Parse.XMLString(File.ReadAllText(filepath));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Parses a CSV formated string. It will return a list of JsonObjects
+        /// Error will be thrown if parser fails.
+        /// </summary>
+        /// <param name="filepath">Filepath of the XML file</param>
+        /// <returns name="jsonObjects[]">List of JsonObjects returned by the parser.</returns>
+        /// <search>
+        /// json, parser, from file, csv, csvfile
+        /// </search>
+        public static List<Elements.JsonObject> FromCSVFile(string filepath)
+        {
+            try
+            {
+                return Parse.CSVString(File.ReadAllText(filepath));
             }
             catch (Exception ex)
             {

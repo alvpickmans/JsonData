@@ -56,6 +56,9 @@ namespace JsonData.Utilities
         /// <param name="root">Value to wrap XML in case is necesary.
         /// More info https://www.newtonsoft.com/json/help/html/ConvertingJSONandXML.htm#! </param>
         /// <returns name="filepath">Returns the filepath if write operation is succesful</returns>
+        /// <search>
+        /// json, parser, to file, xmlfile, xml
+        /// </search>
         public static string ToXMLFile(Elements.JsonObject jsonObject, string filepath, string root= "")
         {
            
@@ -66,6 +69,41 @@ namespace JsonData.Utilities
                 return filepath;
             }
             catch(Exception e )
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Writes a list of JsonObject to a CSV file. JsonObjects must have one level only
+        /// (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.
+        /// </summary>
+        /// <param name="jsonObjects">List of JsonObjects</param>
+        /// <param name="filepath">File path for CSV file</param>
+        /// <returns name="filepath">Returns the filepath if write operation is succesful</returns>
+        /// <search>
+        /// json, parser, to file, csvfile, csv
+        /// </search>
+        public static string ToCSVFile(List<Elements.JsonObject> jsonObjects, string filepath)
+        {
+            try
+            {
+                if (jsonObjects == null) { throw new ArgumentNullException("jsonObject"); }
+                if (filepath == null) { throw new ArgumentNullException("filepath"); }
+
+                string ext = Path.GetExtension(filepath);
+                if (ext.ToLower().Contains("csv"))
+                {
+                    string csv = Parse.JsonToCSV(jsonObjects);
+                    File.WriteAllText(filepath, csv);
+                    return filepath;
+                }
+                else
+                {
+                    throw new Exception("Not proper CSV file selected. Make sure you are writing to a file with '.csv' extension.");
+                }
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message);
             }
