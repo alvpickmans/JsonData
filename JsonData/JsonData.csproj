@@ -204,14 +204,14 @@
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Merge.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortByKeyValue.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortKeys.Large.png" />
-    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.ValueByKey.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.GetValueByKey.Large.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Add.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.FilterByKeyAndValue.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.JsonOptions.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Merge.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortByKeyValue.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortKeys.Small.png" />
-    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.ValueByKey.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.GetValueByKey.Small.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.ByElements.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Elements.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Size.Large.png" />

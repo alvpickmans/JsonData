@@ -78,7 +78,7 @@ namespace JsonData.Elements
                 bool updateKey = false;
                 if (containsKey)
                 {
-                    newJson = j.ValueByKey(k) as JsonObject;
+                    newJson = j.GetValueByKey(k) as JsonObject;
                     containsKey = false;
                     updateKey = true;
                 }
@@ -287,7 +287,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, search, bykey
         /// </search> 
-        internal static object ValueByKey(JsonObject jsonObject, string key)
+        internal static object GetValueByKey(JsonObject jsonObject, string key)
         {
             string[] keys = key.Split('.');
             IsValidKey(key);
@@ -302,7 +302,7 @@ namespace JsonData.Elements
                 string k = keys.First();
                 JsonObject j = jsonObject.jsonObject[k] as JsonObject;
                 string[] nestedKeys = keys.Skip(1).ToArray();
-                return ValueByKey(j, String.Join(".", nestedKeys));
+                return GetValueByKey(j, String.Join(".", nestedKeys));
             }
         }
 
@@ -431,7 +431,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, search, bykey
         /// </search> 
-        public object ValueByKey(string key, bool nesting = true)
+        public object GetValueByKey(string key, bool nesting = true)
         {
             string[] keys = (nesting) ? key.Split('.'): new string[] { key };
             IsValidKey(key);
@@ -448,7 +448,7 @@ namespace JsonData.Elements
                     string k = keys[0];
                     JsonObject j = JsonNet.ReturnValidObject(this.jsonObject[k]) as JsonObject;
                     string[] nestedKeys = keys.Skip(1).ToArray();
-                    return ValueByKey(j, String.Join(".", nestedKeys));
+                    return GetValueByKey(j, String.Join(".", nestedKeys));
                 }
             }
             catch (Exception )
@@ -482,7 +482,7 @@ namespace JsonData.Elements
         public static Dictionary<string, object> SortByKeyValue(List<JsonObject> jsonObjects, string key)
         {
             var sorted = jsonObjects
-                        .Select((json) => new KeyValuePair<JsonObject, object>(json, json.ValueByKey(key)))
+                        .Select((json) => new KeyValuePair<JsonObject, object>(json, json.GetValueByKey(key)))
                         .OrderBy(item => item.Value)
                         .ToList();
             
@@ -523,7 +523,7 @@ namespace JsonData.Elements
                 dynamic v;
                 try
                 {
-                    v = js.ValueByKey(key);
+                    v = js.GetValueByKey(key);
                 }
                 catch
                 {

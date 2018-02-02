@@ -28,6 +28,10 @@
     <oldName>JsonElements.JsonObject.ValueByKey</oldName>
     <newName>JsonData.Elements.JsonObject.ValueByKey</newName>
   </priorNameHint>
+  <priorNameHint>
+    <oldName>JsonData.Elements.JsonObject.ValueByKey</oldName>
+    <newName>JsonData.Elements.JsonObject.GetValueByKey</newName>
+  </priorNameHint>
 <priorNameHint>
     <oldName>JsonElements.JsonObject.SortKeys</oldName>
     <newName>JsonData.Elements.JsonObject.SortKeys</newName>
