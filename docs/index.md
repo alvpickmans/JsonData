@@ -28,10 +28,11 @@ This is the core element of the package. Being a `Dictionary` its underlying c# 
 #### Constructors
 
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name           | Description  |
-| ------------- |:-------------| -----|
+| ------------- |:-------------|:-----|
 | ![ByKeysAndValues]  | **ByKeysAndValues** | JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string. |
 
 #### Methods
+
 |  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | Name | Description  |
 | ----- |:-----| -----|
 | ![Add]  | **Add** | Adds new attribute to the JsonObject. If given key already on the object and update set to True, value associated with the key will be updated. An error will be thrown otherwise. |
@@ -42,7 +43,9 @@ This is the core element of the package. Being a `Dictionary` its underlying c# 
 | ![Remove]  | **Remove** |Remove keys from the given JsonObject. If any key doesn't exit on the object or duplicated keys found on the input, error will be thrown.|
 | ![SortByKeyValue]  | **SortByKeyValue** | Sorts a list of JsonObjects by the ascending order of the values associated with the given key. |
 | ![SortKeys]  | **SortKeys** | Sorts the JsonObject alphabetically by its keys. |
+
 #### Properties
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | Description  |
 | ----- |:-----| -----|
 | ![Keys]  | **Keys** | Returns keys of attributes in the JsonObject. |
@@ -60,6 +63,7 @@ JsonArray acts more as a helper object than a key one. Due to Dynamo's lacing pr
 | ![ByElements]  | **ByElements** | JsonArray constructor by a given list of elements. |
 
 #### Properties
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
 | ----- |:-----| -----|
 | ![Elements]  | **Elements** | Returns elements in the JsonArray object. |
@@ -70,6 +74,7 @@ JsonArray acts more as a helper object than a key one. Due to Dynamo's lacing pr
 The tools provided along with the package are currently focused on handling and parsing files from and to json format.
 
 ### Parse
+
 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
 | ----- |:-----| -----|
 | ![CSVString]  | **CSVString** | Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
@@ -79,6 +84,7 @@ The tools provided along with the package are currently focused on handling and 
 | ![XMLString]  | **XMLString** | Parses a xml formated string. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
 
 ### Read
+
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
 | ----- |:-----| -----|
 | ![FromCSVFile]  | **FromCSVFile** | Reads and parses a CSV formated file. It will return a list of JsonObjects. Error will be thrown if parser fails.|
@@ -86,6 +92,7 @@ The tools provided along with the package are currently focused on handling and 
 | ![FromXMLFile]  | **FromXMLFile** | Reads and parses a XML file. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
 
 ### Write
+
 |&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
 | ----- |:-----| -----|
 | ![ToCSVFile]  | **ToCSVFile** | Writes a list of JsonObject to a CSV file. JsonObjects must have one level only (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.|
