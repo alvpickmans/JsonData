@@ -27,30 +27,30 @@ This is the core element of the package. Being a `Dictionary` its underlying c# 
 
 #### Constructors
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name           | Description  |
-| ------------- |:-------------|:-----|
-| ![ByKeysAndValues]  | **ByKeysAndValues** | JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |            |
+| ------------- |:-------------|
+| ![ByKeysAndValues]  | **ByKeysAndValues**: JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string. |
 
 #### Methods
 
-|  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     | Name | Description  |
-| ----- |:-----| -----|
-| ![Add]  | **Add** | Adds new attribute to the JsonObject. If given key already on the object and update set to True, value associated with the key will be updated. An error will be thrown otherwise. |
-| ![FilterByKeyAndValue]  | **FilterByKeyAndValue** | Filters JsonObjects which contains the given key-value pair. If value is of type string, it will test if it contains the value given. |
-| ![GetValueByKey]  | **GetValueByKey** | Returns the value associated with the given key from the jsonObject. |
-| ![JsonOptions]  | **JsonOptions** | Options for updating JsonObjects: None, Update and Combine. |
-| ![Merge]  | **Merge** | Merge one JsonObject with one or multiple other JsonObjects.|
-| ![Remove]  | **Remove** |Remove keys from the given JsonObject. If any key doesn't exit on the object or duplicated keys found on the input, error will be thrown.|
-| ![SortByKeyValue]  | **SortByKeyValue** | Sorts a list of JsonObjects by the ascending order of the values associated with the given key. |
-| ![SortKeys]  | **SortKeys** | Sorts the JsonObject alphabetically by its keys. |
+|  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;     |  |
+| ----- |:-----|
+| ![Add]  | **Add**: Adds new attribute to the JsonObject. If given key already on the object and update set to True, value associated with the key will be updated. An error will be thrown otherwise. |
+| ![FilterByKeyAndValue]  | **FilterByKeyAndValue**: Filters JsonObjects which contains the given key-value pair. If value is of type string, it will test if it contains the value given. |
+| ![GetValueByKey]  | **GetValueByKey**: Returns the value associated with the given key from the jsonObject. |
+| ![JsonOptions]  | **JsonOptions**: Options for updating JsonObjects: None, Update and Combine. |
+| ![Merge]  | **Merge**: Merge one JsonObject with one or multiple other JsonObjects.|
+| ![Remove]  | **Remove**: Remove keys from the given JsonObject. If any key doesn't exit on the object or duplicated keys found on the input, error will be thrown.|
+| ![SortByKeyValue]  | **SortByKeyValue**: Sorts a list of JsonObjects by the ascending order of the values associated with the given key. |
+| ![SortKeys]  | **SortKeys**: Sorts the JsonObject alphabetically by its keys. |
 
 #### Properties
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Name | Description  |
-| ----- |:-----| -----|
-| ![Keys]  | **Keys** | Returns keys of attributes in the JsonObject. |
-| ![JsonObjectSize]  | **Size** | Returns the number of attributes on the JsonObject. |
-| ![Values]  | **Size** | Returns values of attributes in the JsonObject. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  |
+| ----- |:-----|
+| ![Keys]  | **Keys**: Returns keys of attributes in the JsonObject. |
+| ![JsonObjectSize]  | **Size**: Returns the number of attributes on the JsonObject. |
+| ![Values]  | **Size**: Returns values of attributes in the JsonObject. |
 
 
 ### JsonArray
@@ -58,16 +58,16 @@ JsonArray acts more as a helper object than a key one. Due to Dynamo's lacing pr
 
 #### Constructors
 
-|         | Name           | Description  |
-| ------------- |:-------------| -----|
-| ![ByElements]  | **ByElements** | JsonArray constructor by a given list of elements. |
+|         |            |
+| ------------- |:-------------|
+| ![ByElements]  | **ByElements**: JsonArray constructor by a given list of elements. |
 
 #### Properties
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
-| ----- |:-----| -----|
-| ![Elements]  | **Elements** | Returns elements in the JsonArray object. |
-| ![JsonObjectSize]  | **Size** | Returns the number of elements in the JsonArray object. |
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name |
+| ----- |:-----|
+| ![Elements]  | **Elements**: Returns elements in the JsonArray object. |
+| ![JsonObjectSize]  | **Size**: Returns the number of elements in the JsonArray object. |
 
 
 ## Utilities
@@ -75,29 +75,29 @@ The tools provided along with the package are currently focused on handling and 
 
 ### Parse
 
-| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
-| ----- |:-----| -----|
-| ![CSVString]  | **CSVString** | Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
-| ![JsonString]  | **JsonString** | Parses a json formated string. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
-| ![JsonToCSV]  | **JsonToCSV** | Converts a list of JsonObject to CSV string format. JsonObjects must have one level only (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
-| ![JsonToXML]  | **JsonToXML** | Converts a JsonObject to XML string format. Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
-| ![XMLString]  | **XMLString** | Parses a xml formated string. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
+| &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  |
+| ----- |:-----|
+| ![CSVString]  | **CSVString**: Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
+| ![JsonString]  | **JsonString**: Parses a json formated string. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
+| ![JsonToCSV]  | **JsonToCSV**: Converts a list of JsonObject to CSV string format. JsonObjects must have one level only (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
+| ![JsonToXML]  | **JsonToXML**: Converts a JsonObject to XML string format. Parses a CSV formated string. It will return a list of JsonObjects. Error will be thrown if parser fails.|
+| ![XMLString]  | **XMLString**: Parses a xml formated string. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
 
 ### Read
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
-| ----- |:-----| -----|
-| ![FromCSVFile]  | **FromCSVFile** | Reads and parses a CSV formated file. It will return a list of JsonObjects. Error will be thrown if parser fails.|
-| ![FromJsonFile]  | **FromJsonFile** | Reads and parses a json file. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
-| ![FromXMLFile]  | **FromXMLFile** | Reads and parses a XML file. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  |
+| ----- |:-----|
+| ![FromCSVFile]  | **FromCSVFile**: Reads and parses a CSV formated file. It will return a list of JsonObjects. Error will be thrown if parser fails.|
+| ![FromJsonFile]  | **FromJsonFile**: Reads and parses a json file. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
+| ![FromXMLFile]  | **FromXMLFile**: Reads and parses a XML file. It will return JsonObject, JsonArray or other match that the parser can do from the input. Error will be thrown if parser fails.|
 
 ### Write
 
-|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Name | Description  |
-| ----- |:-----| -----|
-| ![ToCSVFile]  | **ToCSVFile** | Writes a list of JsonObject to a CSV file. JsonObjects must have one level only (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.|
-| ![ToJsonFile]  | **ToJsonFile** | Writes the JsonObject or JsonArray to a json file.|
-| ![ToXMLFile]  | **ToXMLFile** | Writes the JsonObject or JsonArray to a XML file.|
+|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|  |
+| ----- |:-----|
+| ![ToCSVFile]  | **ToCSVFile**: Writes a list of JsonObject to a CSV file. JsonObjects must have one level only (no other JsonObject or JsonArray as values), being the keys the header of the CSV string.|
+| ![ToJsonFile]  | **ToJsonFile**: Writes the JsonObject or JsonArray to a json file.|
+| ![ToXMLFile]  | **ToXMLFile**: Writes the JsonObject or JsonArray to a XML file.|
 
 [ByKeysAndValues]: assets/images/JsonData.Elements.JsonObject.ByKeysAndValues.Small.png
 [Add]: assets/images/JsonData.Elements.JsonObject.Add.Small.png
