@@ -2,19 +2,19 @@
 JsonData is a [Dynamo](http://www.dynamobim.org) package to provide extra functionalities when handling data, based on Newtonsoft JsonNet C# library.
 
 The original purpose was to provide a simpler way of handling data in Dynamo. Lists work just fine, but sometimes they are just not enough. With several functionalities to filter, update, combine and group your data, this package can help to boost your Dynamo workflows.
-- [JsonData](#jsondata)
-    - [Elements](#elements)
-        - [JsonObject](#jsonobject)
-            - [Constructors](#constructors)
-            - [Methods](#methods)
-            - [Properties](#properties)
-        - [JsonArray](#jsonarray)
-            - [Constructors](#constructors)
-            - [Properties](#properties)
-    - [Utilities](#utilities)
-        - [Parse](#parse)
-        - [Read](#read)
-        - [Write](#write)
+
+- [Elements](#elements)
+    - [JsonObject](#jsonobject)
+        - [Constructors](#constructors)
+        - [Methods](#methods)
+        - [Properties](#properties)
+    - [JsonArray](#jsonarray)
+        - [Constructors](#constructors)
+        - [Properties](#properties)
+- [Utilities](#utilities)
+    - [Parse](#parse)
+    - [Read](#read)
+    - [Write](#write)
 
 
 ___
