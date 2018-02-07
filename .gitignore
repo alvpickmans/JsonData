@@ -305,3 +305,8 @@ $RECYCLE.BIN/
 
 #Windows bat files
 *.bat
+
+
+#Custom
+docs/assets/wiki/datasets/*
+!docs/assets/wiki/datasets/*.zip
