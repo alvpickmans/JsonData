@@ -43,7 +43,7 @@ namespace JsonData.Elements
 
         #region Constructors
         /// <summary>
-        /// JsonArray constructor by a given list of items.
+        /// JsonArray constructor by a given list of elements.
         /// </summary>
         /// <param name="items">Valid list of items</param>
         internal JsonArray(List<object> items)

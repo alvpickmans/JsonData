@@ -72,7 +72,7 @@ namespace JsonData.Utilities
         }
 
         /// <summary>
-        /// Parses a CSV formated string. It will return a list of JsonObjects
+        /// Reads and parses a CSV formated file. It will return a list of JsonObjects
         /// Error will be thrown if parser fails.
         /// </summary>
         /// <param name="filepath">Filepath of the XML file</param>

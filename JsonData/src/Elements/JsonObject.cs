@@ -459,7 +459,7 @@ namespace JsonData.Elements
 
         //TODO: Handling of nesting IMPORTANT
         /// <summary>
-        /// Sort the JsonObject alphabetically by its keys.
+        /// Sorts the JsonObject alphabetically by its keys.
         /// </summary>
         /// <returns name="sortedJsonObject">Sorted JsonObject</returns>
         public JsonObject SortKeys()
