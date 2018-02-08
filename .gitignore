@@ -309,4 +309,4 @@ $RECYCLE.BIN/
 
 #Custom
 samples/wiki/datasets/*
-!sampes/wiki/datasets/*.zip
+!samples/wiki/datasets/*.zip
