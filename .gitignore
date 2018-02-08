@@ -308,5 +308,5 @@ $RECYCLE.BIN/
 
 
 #Custom
-docs/assets/wiki/datasets/*
-!docs/assets/wiki/datasets/*.zip
+samples/wiki/datasets/*
+!sampes/wiki/datasets/*.zip
