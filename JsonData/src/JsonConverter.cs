@@ -19,14 +19,14 @@ namespace JsonData
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jsonObject = JObject.Load(reader);
-            return JsonObject.ByJObject(jsonObject);
+            return new JsonObject(jsonObject);
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var name = value as JsonObject;
             writer.WriteStartObject();
-            foreach (KeyValuePair<string, dynamic> item in name.jsonObject)
+            foreach (KeyValuePair<string, dynamic> item in name.dict)
             {
                 writer.WritePropertyName(item.Key.ToString());
                 string typeNameSpace = item.Value.GetType().Namespace;

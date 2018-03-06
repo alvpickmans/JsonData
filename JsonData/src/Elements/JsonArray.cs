@@ -25,7 +25,7 @@ namespace JsonData.Elements
         /// </search>
         public List<object> Elements
         {
-            get { return GetValues(this); }
+            get { return this.jsonArray; }
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace JsonData.Elements
             InitJsonNet(typeof(JsonArray));
             foreach (var item in items)
             {
-                IsValidValueAndException(item);
+                //IsValidValueAndException(item);
                 jsonArray.Add(item);
             }
         }
@@ -66,7 +66,7 @@ namespace JsonData.Elements
             foreach(JToken tk in jArray.Children())
             {
                 object o = tk.ToObject<object>();
-                IsValidValueAndException(o);
+                //IsValidValueAndException(o);
                 jsonArray.Add(o);
             }
         }

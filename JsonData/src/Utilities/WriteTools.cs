@@ -88,7 +88,7 @@ namespace JsonData.Utilities
         {
             try
             {
-                if (jsonObjects == null) { throw new ArgumentNullException("jsonObject"); }
+                if (jsonObjects == null) { throw new ArgumentNullException("dict"); }
                 if (filepath == null) { throw new ArgumentNullException("filepath"); }
 
                 string ext = Path.GetExtension(filepath);

@@ -6,6 +6,7 @@ using ProtoCore.AST.AssociativeAST;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 #endregion
 
 namespace JsonDataUI.JsonObject
@@ -20,6 +21,9 @@ namespace JsonDataUI.JsonObject
     public class JsonOptions : DSDropDownBase
     {
         public JsonOptions() : base("JsonOption") { }
+
+        //[JsonConstructor]
+        //public JsonOptions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("JsonOption", inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore( string currentSelection)
         {
@@ -48,11 +52,8 @@ namespace JsonDataUI.JsonObject
                 int index = Items.ToList().FindIndex(item => item.Name == selection);
                 SelectedIndex = index;
             }
-
             
         }
-
-
 
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
@@ -72,11 +73,9 @@ namespace JsonDataUI.JsonObject
                 );
             var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall);
 
-
             return new List<AssociativeNode> { assign };
         }
 
-     
     }
 
 }
