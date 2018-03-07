@@ -153,7 +153,7 @@
     <ProjectReference Include="..\JsonData\JsonData.csproj">
       <Project>{B8641242-9127-4483-980E-9739E5F8EC23}</Project>
       <Name>JsonData</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Choose>
