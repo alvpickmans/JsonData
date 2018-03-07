@@ -13,7 +13,7 @@ namespace JsonData
     /// <summary>
     /// Parent class for json elements.
     /// </summary>
-    public static class JsonNet
+    public abstract class JsonNet
     {
         #region Methods
         

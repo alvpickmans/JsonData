@@ -13,7 +13,7 @@ namespace JsonData.Elements
     /// Class for handle information in a json format.
     /// </summary>
     [JsonConverter(typeof(JsonObjectConverter))]
-    public class JsonObject
+    public class JsonObject : JsonNet
     {
         #region Variables
         internal Dictionary<string, object> dict = new Dictionary<string, object>();

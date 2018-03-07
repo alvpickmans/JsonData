@@ -11,7 +11,7 @@ namespace JsonData.Elements
     /// Class for handle JArray objects.
     /// </summary>
     [JsonConverter(typeof(JsonArrayConverter))]
-    public class JsonArray
+    public class JsonArray : JsonNet
     {
         #region Variables
         internal List<object> jsonArray = new List<object>();
