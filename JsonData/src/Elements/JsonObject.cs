@@ -357,7 +357,6 @@ namespace JsonData.Elements
             return GetValueRecursive(this, key, nesting);
         }
 
-        //TODO: Handling of nesting IMPORTANT
         /// <summary>
         /// Sorts JsonObject's properties alphabetically by its keys.
         /// </summary>
@@ -435,27 +434,6 @@ namespace JsonData.Elements
                             break;
                     }
                 }
-
-                //Type valueType = value.GetType();
-                //if (v == null)
-                //{
-                //    valid = false;
-                //}
-                //else if (valueType == typeof(string) || valueType == typeof(char))
-                //{
-
-                //    if (v.ToLower().Contains(value.ToLower()))
-                //    {
-                //        valid = true;
-                //    }
-                //}
-                //else
-                //{
-                //    if (v == value)
-                //    {
-                //        valid = true;
-                //    }
-                //}
 
                 if (valid)
                 {
