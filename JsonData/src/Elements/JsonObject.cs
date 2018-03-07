@@ -13,7 +13,7 @@ namespace JsonData.Elements
     /// Class for handle information in a json format.
     /// </summary>
     [JsonConverter(typeof(JsonObjectConverter))]
-    public class JsonObject : JsonNet
+    public class JsonObject
     {
         #region Variables
         internal Dictionary<string, object> dict = new Dictionary<string, object>();
@@ -25,11 +25,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, keys
         /// </search>
-        public List<string> Keys
-        {
-            get { return dict.Keys.ToList(); }
-        }
-
+        public List<string> Keys => dict.Keys.ToList();
 
         /// <summary>
         /// Returns values of attributes in the JsonObject.
@@ -38,10 +34,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, values
         /// </search>
-        public List<object> Values
-        {
-            get { return dict.Values.ToList(); }
-        }
+        public List<object> Values => dict.Values.ToList();
 
         /// <summary>
         /// Returns the number of attributes on the JsonObject.
@@ -50,19 +43,13 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, size
         /// </search>
-        public int Size
-        {
-            get { return dict.Count; }
-        }
-        
+        public int Size => dict.Count;
+
         #endregion
 
         #region Internal Constructors
 
-        internal JsonObject()
-        {
-            InitJsonNet(typeof(JsonObject));
-        }
+        internal JsonObject() { }
 
         /// <summary>
         /// JsonObject constructor by a given key-value pair of items.
@@ -73,8 +60,6 @@ namespace JsonData.Elements
         /// <param name="jsonOption">Options to modify a JsonObject</param>
         internal JsonObject(List<string> keys, List<object> values, bool nesting, JsonOption jsonOption)
         {
-            InitJsonNet(typeof(JsonObject));
-
             if (nesting)
             {
                 List<KeyValuePair<string, object>> pair = keys.Zip(values, (k, v) => new KeyValuePair<string, object>(k, v)).ToList();

@@ -23,10 +23,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonarray, elements, items
         /// </search>
-        public List<object> Elements
-        {
-            get { return this.jsonArray; }
-        }
+        public List<object> Elements => jsonArray;
 
         /// <summary>
         /// Returns the number of elements in the JsonArray object.
@@ -35,10 +32,8 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonarray, size
         /// </search>
-        public int Size
-        {
-            get { return jsonArray.Count; }
-        }
+        public int Size => jsonArray.Count;
+
         #endregion
 
         #region Constructors
@@ -48,10 +43,8 @@ namespace JsonData.Elements
         /// <param name="items">Valid list of items</param>
         internal JsonArray(List<object> items)
         {
-            InitJsonNet(typeof(JsonArray));
             foreach (var item in items)
             {
-                //IsValidValueAndException(item);
                 jsonArray.Add(item);
             }
         }
@@ -62,11 +55,9 @@ namespace JsonData.Elements
         /// <param name="jArray">JArray object</param>
         internal JsonArray(JArray jArray)
         {
-            InitJsonNet(typeof(JsonArray));
             foreach(JToken tk in jArray.Children())
             {
-                object o = tk.ToObject<object>();
-                //IsValidValueAndException(o);
+                object o = ReturnValidObject(tk);
                 jsonArray.Add(o);
             }
         }

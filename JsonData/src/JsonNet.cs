@@ -13,39 +13,12 @@ namespace JsonData
     /// <summary>
     /// Parent class for json elements.
     /// </summary>
-    public abstract class JsonNet
+    public static class JsonNet
     {
-        #region Variables
-        /// <summary>
-        /// Type of the Json Element.
-        /// </summary>
-        internal Type type { get; private set; }
-
-        #endregion
-
         #region Methods
-
+        
         /// <summary>
-        /// Constructor of the class.
-        /// </summary>
-        /// <param name="t">Element's type</param>
-        internal void InitJsonNet(Type t)
-        {
-            type = t;
-        }
-
-        /// <summary>
-        /// Overwrites the inherited GetType() method from the object type.
-        /// Returns json element´s type.
-        /// </summary>
-        /// <returns name="type">Element´s type</returns>
-        new internal Type GetType()
-        {
-            return type;
-        }
-
-        /// <summary>
-        /// Returns a valid package json element (JsonObject or JsonArray) from the input object.
+        /// Returns a valid package json object the input object.
         /// Same implementation as in:
         /// https://github.com/pboyer/Dynamo/blob/ac9178c5790e6704ce5f5a768ab3eaceb436782d/src/Libraries/CoreNodes/JSON.cs#L24
         /// </summary>
@@ -80,6 +53,5 @@ namespace JsonData
         #endregion
 
     }
-
-
+    
 }
