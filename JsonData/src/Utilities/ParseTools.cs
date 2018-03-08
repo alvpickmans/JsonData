@@ -28,26 +28,15 @@ namespace JsonData.Utilities
         /// </summary>
         /// <param name="jsonString">String with a json format</param>
         /// <returns name="object">Object returned by the parser</returns>
-        /// <returns name="type">Type of the returned object</returns>
         /// <search>
         /// json, parse, jsonstring
         /// </search>
-        [MultiReturn(new[] { "object", "type" })]
-        public static Dictionary<string, object> JsonString(string jsonString)
+        public static object JsonString(string jsonString)
         {
-
             if (jsonString == null) { throw new ArgumentNullException("jsonString"); }
 
             JToken parsed = JToken.Parse(jsonString);
-
-            var obj = JsonNet.ReturnValidObject(parsed);
-
-            return new Dictionary<string, object>()
-            {
-                {"object", obj },
-                {"type", obj.GetType().ToString() }
-            };
-
+            return JsonNet.ReturnValidObject(parsed);
         }
 
 
@@ -62,8 +51,7 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parse, xml
         /// </search>
-        [MultiReturn(new[] { "object", "type" })]
-        public static Dictionary<string, object> XMLString(string xmlString)
+        public static object XMLString(string xmlString)
         {
             if (xmlString == null) { throw new ArgumentNullException("xmlString"); }
 

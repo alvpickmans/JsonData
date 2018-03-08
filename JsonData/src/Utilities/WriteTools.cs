@@ -3,12 +3,10 @@ using Autodesk.DesignScript.Runtime;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.IO;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.XPath;
-using JsonData;
+using System.Text;
 //using JsonElements;
 #endregion
 
@@ -19,7 +17,6 @@ namespace JsonData.Utilities
     /// </summary>
     public static class Write
     {
-        
         /// <summary>
         /// Writes the JsonObject or JsonArray to a json file.
         /// </summary>
@@ -29,17 +26,24 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parser, to file, jsonfile
         /// </search>
-        public static string ToJsonFile(JsonNet json, string filepath)
+        public static string ToJsonFile([ArbitraryDimensionArrayImport] List<JsonNet> json, string filepath)
         {
             if(json == null) { throw new ArgumentNullException("json"); }
             if (filepath == null) { throw new ArgumentNullException("filepath"); }
 
             string ext = Path.GetExtension(filepath);
-            string validExt = "json";
+            List<string> validExt = new List<string>() { ".json", ".dyn" };
 
-            if (ext.ToLower().Contains(validExt))
+            if (validExt.Contains(ext.ToLower()))
             {
-                File.WriteAllText(filepath, json.ToString());
+                if(json.Count == 1)
+                {
+                    File.WriteAllText(filepath, json[0].ToString());
+                }
+                else
+                {
+                    File.WriteAllText(filepath, JsonConvert.SerializeObject(json, Formatting.Indented));
+                }
                 return filepath;
             }
             else

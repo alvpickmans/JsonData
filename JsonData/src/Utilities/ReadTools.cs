@@ -31,19 +31,15 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parser, from file, jsonfile
         /// </search>
-        [MultiReturn(new[] { "object", "type" })]
-        public static Dictionary<string,object> FromJsonFile(string filepath)
+        public static object FromJsonFile(string filepath)
         {
-            string ext = Path.GetExtension(filepath);
-            string validExt = "json";
-
-            if(ext.ToLower().Contains(validExt))
+            try
             {
                 return Parse.JsonString(File.ReadAllText(filepath));
             }
-            else
+            catch(Exception ex)
             {
-                throw new Exception(String.Format("File extension is not of {0} type. Please select a valid {0} file.", validExt));
+                throw ex;
             }
 
         }
@@ -58,8 +54,7 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parser, from file, xml, xmlfile
         /// </search>
-        [MultiReturn(new[] { "object", "type" })]
-        public static Dictionary<string, object> FromXMLFile(string filepath)
+        public static object FromXMLFile(string filepath)
         {
             try
             {
@@ -67,7 +62,7 @@ namespace JsonData.Utilities
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw ex;
             }
         }
 
@@ -88,7 +83,7 @@ namespace JsonData.Utilities
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw ex;
             }
         }
     }

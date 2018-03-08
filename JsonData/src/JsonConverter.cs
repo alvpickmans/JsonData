@@ -44,7 +44,6 @@ namespace JsonData
         }
     }
 
-
     internal class JsonArrayConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
