@@ -211,14 +211,12 @@
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Size.Small.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Add.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.FilterByKeyAndValue.Large.png" />
-    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.JsonOptions.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.Merge.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortByKeyValue.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.SortKeys.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.GetValueByKey.Large.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Add.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.FilterByKeyAndValue.Small.png" />
-    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.JsonOptions.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.Merge.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortByKeyValue.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.SortKeys.Small.png" />
@@ -226,13 +224,9 @@
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.ByElements.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Elements.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Elements.JsonArray.Size.Large.png" />
-    <None Include="Resources\Images\Large\JsonDataUI.Elements.JsonObject.JsonOptions.Large.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.ByElements.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.Elements.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Elements.JsonArray.Size.Small.png" />
-    <None Include="Resources\Images\Small\JsonDataUI.Elements.JsonObject.JsonOptions.Small.png" />
-    <None Include="Resources\Images\Small\JsonDataUI.JsonDataUI.JsonOptions.Small.png" />
-    <None Include="Resources\Images\Large\JsonDataUI.JsonDataUI.JsonOptions.Large.png" />
     <None Include="Resources\Images\Large\JsonDataUI.JsonOptions.Large.png" />
     <None Include="Resources\Images\Small\JsonDataUI.JsonOptions.Small.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Read.FromJsonFile.Large.png" />
@@ -243,10 +237,8 @@
     <None Include="Resources\Images\Small\JsonData.Utilities.Read.FromXMLFile.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToJsonFile.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToXMLFile.Small.png" />
-    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonString.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToXML.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Parse.XMLString.Large.png" />
-    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonString.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToXML.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.XMLString.Small.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Parse.CSVString.Large.png" />
@@ -257,6 +249,10 @@
     <None Include="Resources\Images\Small\JsonData.Utilities.Write.ToCSVFile.Small.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToCSV.Large.png" />
     <None Include="Resources\Images\Large\JsonData.Utilities.Write.ToCSVFile.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.String.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToString.Large.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.String.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToString.Small.png" />
     <Content Include="samples\images\JsonDataHeader.png" />
   </ItemGroup>
   <ItemGroup>

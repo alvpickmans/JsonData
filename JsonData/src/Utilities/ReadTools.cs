@@ -35,7 +35,7 @@ namespace JsonData.Utilities
         {
             try
             {
-                return Parse.JsonString(File.ReadAllText(filepath));
+                return Parse.String(File.ReadAllText(filepath));
             }
             catch(Exception ex)
             {

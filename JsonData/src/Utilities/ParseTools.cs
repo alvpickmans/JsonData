@@ -22,8 +22,8 @@ namespace JsonData.Utilities
     {
 
         /// <summary>
-        /// Parses a json formated string. It will return JsonObject,
-        /// JsonArray or other match that the parser can do from the input.
+        /// Parses a json formated string. It will return JsonObjects
+        /// or other match that the parser can do from the input.
         /// Error will be thrown if parser fails.
         /// </summary>
         /// <param name="jsonString">String with a json format</param>
@@ -31,7 +31,7 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parse, jsonstring
         /// </search>
-        public static object JsonString(string jsonString)
+        public static object String(string jsonString)
         {
             if (jsonString == null) { throw new ArgumentNullException("jsonString"); }
 
@@ -58,7 +58,7 @@ namespace JsonData.Utilities
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlString);
             string jsonString = JsonConvert.SerializeXmlNode(xmlDoc);
-            return JsonString(jsonString);
+            return String(jsonString);
             
         }
 
@@ -113,7 +113,7 @@ namespace JsonData.Utilities
         /// More info https://www.newtonsoft.com/json/help/html/ConvertingJSONandXML.htm#! </param>
         /// <returns name="xmlString">XML formatted string converted from JsonObject</returns>
         /// <search>
-        /// json, convert, xml, parser
+        /// json, convert, xml, parse
         /// </search>
         public static string JsonToXML(Elements.JsonObject jsonObject , string root = "")
         {
@@ -178,6 +178,28 @@ namespace JsonData.Utilities
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Converts a list of JsonObject to CSV string format.
+        /// </summary>
+        /// <param name="jsonObjects">Single or list of JsonObjects</param>
+        /// <returns name="string">Returns the parsed string</returns>
+        /// <search>
+        /// json, parse, to string
+        /// </search>
+        public static string JsonToString([ArbitraryDimensionArrayImport] List<Elements.JsonObject> jsonObjects)
+        {
+            if (jsonObjects == null) { throw new ArgumentNullException("jsonObjects"); }
+           
+            if (jsonObjects.Count == 1)
+            {
+                return jsonObjects[0].ToString();
+            }
+            else
+            {
+                return JsonConvert.SerializeObject(jsonObjects, Newtonsoft.Json.Formatting.Indented);
             }
         }
 

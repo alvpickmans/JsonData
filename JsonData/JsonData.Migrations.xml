@@ -70,7 +70,11 @@
   </priorNameHint>
   <priorNameHint>
     <oldName>JsonTools.JsonTools.ParseJsonString</oldName>
-    <newName>JsonData.Utilities.Parse.JsonString</newName>
+    <newName>JsonData.Utilities.Parse.String</newName>
+  </priorNameHint>
+   <priorNameHint>
+    <oldName>JsonData.Utilities.Parse.JsonString</oldName>
+    <newName>JsonData.Utilities.Parse.String</newName>
   </priorNameHint>
   <priorNameHint>
     <oldName>JsonTools.JsonTools.FromJsonFile</oldName>

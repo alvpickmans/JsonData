@@ -13,11 +13,11 @@ namespace JsonData.Utilities.Tests
     {
         [Test]
         [Category("UnitTests")]
-        public void JsonStringTest()
+        public void StringTest()
         {
-            Assert.IsInstanceOf(typeof(Int64), Parse.JsonString("2"));
-            Assert.IsInstanceOf(typeof(Elements.JsonObject), Parse.JsonString("{'one': 1}"));
-            Assert.IsInstanceOf(typeof(List<object>), Parse.JsonString("[{'one': 1}, {'two': 2}]"));
+            Assert.IsInstanceOf(typeof(Int64), Parse.String("2"));
+            Assert.IsInstanceOf(typeof(Elements.JsonObject), Parse.String("{'one': 1}"));
+            Assert.IsInstanceOf(typeof(List<object>), Parse.String("[{'one': 1}, {'two': 2}]"));
         }
 
         [Test]

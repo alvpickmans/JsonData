@@ -26,9 +26,9 @@ namespace JsonData.Utilities
         /// <search>
         /// json, parser, to file, jsonfile
         /// </search>
-        public static string ToJsonFile([ArbitraryDimensionArrayImport] List<JsonNet> json, string filepath)
+        public static string ToJsonFile([ArbitraryDimensionArrayImport] List<Elements.JsonObject> jsonObjects, string filepath)
         {
-            if(json == null) { throw new ArgumentNullException("json"); }
+            if(jsonObjects == null) { throw new ArgumentNullException("json"); }
             if (filepath == null) { throw new ArgumentNullException("filepath"); }
 
             string ext = Path.GetExtension(filepath);
@@ -36,14 +36,7 @@ namespace JsonData.Utilities
 
             if (validExt.Contains(ext.ToLower()))
             {
-                if(json.Count == 1)
-                {
-                    File.WriteAllText(filepath, json[0].ToString());
-                }
-                else
-                {
-                    File.WriteAllText(filepath, JsonConvert.SerializeObject(json, Formatting.Indented));
-                }
+                File.WriteAllText(filepath, Parse.JsonToString(jsonObjects));
                 return filepath;
             }
             else
