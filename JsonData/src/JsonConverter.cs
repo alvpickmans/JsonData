@@ -25,15 +25,15 @@ namespace JsonData
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var name = value as JsonObject;
+            var json = value as JsonObject;
             writer.WriteStartObject();
-            foreach (KeyValuePair<string, object> item in name.dict)
+            foreach (KeyValuePair<string, object> item in json.dict)
             {
                 writer.WritePropertyName(item.Key);
                 Type type = item.Value.GetType();
-                if (type.GetInterface(nameof(IEnumerable<object>)) != null)
+                var temp = item.Value as IEnumerable<object>;
+                if (temp != null)
                 {
-                    var temp = item.Value as System.Collections.ArrayList;
                     var serializedList = new List<object>();
                     foreach (var element in temp)
                     {
@@ -57,7 +57,7 @@ namespace JsonData
                     }
                     catch (Exception)
                     {
-                        serializer.Serialize(writer, item.Value.ToString());
+                        serializer.Serialize(writer, item.Value.ToString(), typeof(string));
                     }
                 }
                 
