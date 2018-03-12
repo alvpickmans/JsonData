@@ -295,10 +295,10 @@
     <MakeDir Directories="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\extra" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>echo Configuration: $(Configuration)
+    <PostBuildEvent>echo Configuration: "$(Configuration)"
 
-if $(Configuration) == Debug goto Dynamo1
-if $(Configuration) == Debug2.0 goto Dynamo2
+if "$(Configuration)" == "Debug" goto Dynamo1
+if "$(Configuration)" == "Debug 2.0" goto Dynamo2
 
 :Dynamo1
 echo Copying to Dynamo Core 1.3
@@ -312,11 +312,11 @@ goto exit
 
 :Dynamo2
 echo Copying to Dynamo Core 2
-if not exist "%25appdata%25\Dynamo\Dynamo Core\1.3\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData"
+if not exist "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData"
 xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData"
 
 echo Copying to Dynamo Revit 2
-if not exist "%25appdata%25\Dynamo\Dynamo Revit\1.3\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData"
+if not exist "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData"
 xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData"
 goto exit
 
