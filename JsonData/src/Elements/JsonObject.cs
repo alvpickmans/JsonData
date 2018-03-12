@@ -34,8 +34,9 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, values
         /// </search>
+        [AllowRankReduction]
         public List<object> Values => dict.Values.ToList();
-
+        
         /// <summary>
         /// Returns the number of attributes on the JsonObject.
         /// </summary>

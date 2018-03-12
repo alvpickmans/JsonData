@@ -29,9 +29,9 @@ namespace JsonData.Utilities.Tests
             01, john, doe
             02, jane, doe";
             var parsed = Parse.CSVString(csv);
-            Assert.IsInstanceOf(typeof(List<Elements.JsonObject>), parsed);
+            Assert.IsInstanceOf(typeof(IList<Elements.JsonObject>), parsed);
             Assert.AreEqual(2, parsed.Count);
-            Assert.Contains("john", parsed.First().Values);
+            Assert.Contains("john", parsed.First().Values.ToList());
 
         }
 

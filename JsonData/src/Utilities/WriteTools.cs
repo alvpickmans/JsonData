@@ -20,7 +20,7 @@ namespace JsonData.Utilities
         /// <summary>
         /// Writes the JsonObject or JsonArray to a json file.
         /// </summary>
-        /// <param name="json">JsonObject or JsonArray element</param>
+        /// <param name="jsonObjects">Single or list of JsonObjects</param>
         /// <param name="filepath">File path for json file</param>
         /// <returns name="filepath">Returns the filepath if write operation is succesful</returns>
         /// <search>
