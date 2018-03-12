@@ -2,13 +2,14 @@
 using JsonData.Elements;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
+using System.Linq;
 using System;
 using System.Collections.Generic;
 #endregion
 
 namespace JsonData
 {
-
     internal class JsonObjectConverter : JsonConverter
     {
         public override bool CanConvert(Type objectType)
@@ -26,17 +27,38 @@ namespace JsonData
         {
             var name = value as JsonObject;
             writer.WriteStartObject();
-            foreach (KeyValuePair<string, dynamic> item in name.dict)
+            foreach (KeyValuePair<string, object> item in name.dict)
             {
-                writer.WritePropertyName(item.Key.ToString());
-                string typeNameSpace = item.Value.GetType().Namespace;
-                if (typeNameSpace.Contains("System") || typeNameSpace.Contains("Json") || typeNameSpace.Contains("Newtonsoft"))
+                writer.WritePropertyName(item.Key);
+                Type type = item.Value.GetType();
+                if (type.GetInterface(nameof(IEnumerable<object>)) != null)
                 {
-                    serializer.Serialize(writer, item.Value);
+                    var temp = item.Value as System.Collections.ArrayList;
+                    var serializedList = new List<object>();
+                    foreach (var element in temp)
+                    {
+                        try
+                        {
+                            JsonConvert.SerializeObject(element);
+                            serializedList.Add(element);
+                        }
+                        catch (Exception)
+                        {
+                            serializedList.Add(element.ToString());
+                        }
+                    }
+                    serializer.Serialize(writer, serializedList);
                 }
                 else
                 {
-                    serializer.Serialize(writer, item.Value.ToString());
+                    try
+                    {
+                        serializer.Serialize(writer, item.Value);
+                    }
+                    catch (Exception)
+                    {
+                        serializer.Serialize(writer, item.Value.ToString());
+                    }
                 }
                 
             }
