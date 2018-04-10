@@ -22,8 +22,8 @@ namespace JsonDataUI.JsonObject
     {
         public JsonOptions() : base("JsonOption") { }
 
-        //[JsonConstructor]
-        //public JsonOptions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("JsonOption", inPorts, outPorts) { }
+        [JsonConstructor]
+        public JsonOptions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("JsonOption", inPorts, outPorts) { }
 
         protected override SelectionState PopulateItemsCore( string currentSelection)
         {
