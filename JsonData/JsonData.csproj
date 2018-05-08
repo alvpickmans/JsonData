@@ -174,7 +174,6 @@
     <Compile Include="src\Utilities\ParseTools.cs" />
     <Compile Include="src\Utilities\WriteTools.cs" />
     <Compile Include="src\Elements\JsonObject.cs" />
-    <Compile Include="src\Elements\JsonArray.cs" />
     <Compile Include="src\JsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>

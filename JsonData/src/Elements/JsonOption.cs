@@ -31,6 +31,7 @@ namespace JsonData
     /// <summary>
     /// Static Class wrapping method to return JsonOption by its name
     /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
     public static class JsonOptions
     {
         /// <summary>

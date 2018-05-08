@@ -13,7 +13,7 @@ namespace JsonDataUI.JsonObject
 {
 
     [NodeName("JsonOptions")]
-    [NodeCategory("JsonData.Elements.JsonObject")]
+    [NodeCategory("JsonData.JsonObject")]
     [NodeDescription("Options for updating JsonObjects")]
     [OutPortTypes("JsonOption")]
     [OutPortDescriptions("Option to update a JsonObject when keys are already present in the object")]
