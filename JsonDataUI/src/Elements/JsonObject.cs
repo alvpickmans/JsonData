@@ -1,11 +1,16 @@
 ﻿#region namesapces
-using CoreNodeModels;
-using Dynamo.Graph.Nodes;
-using JsonData;
-using ProtoCore.AST.AssociativeAST;
 using System;
 using System.Collections.Generic;
+using System.Collections;
+using System.Windows;
+using System.Windows.Controls;
 using System.Linq;
+using CoreNodeModels;
+using Dynamo.Graph.Nodes;
+using Dynamo.UI.Commands;
+using JsonData;
+using ProtoCore.AST.AssociativeAST;
+using VMDataBridge;
 using Newtonsoft.Json;
 #endregion
 
@@ -76,6 +81,69 @@ namespace JsonDataUI.JsonObject
             return new List<AssociativeNode> { assign };
         }
 
+    }
+
+    [NodeName("JsonObject.ByKeysAndValuesUI")]
+    [NodeCategory("JsonData.JsonObjectUI")]
+    [NodeDescription("Create JsonObject by keys and values")]
+    [InPortNames("keys", "values")]
+    [InPortTypes("List<string>", "List<object>")]
+    [OutPortNames("jsonObject")]
+    [OutPortTypes("JsonObject")]
+    [IsDesignScriptCompatible]
+    public class JsonByKeysAndValues : Controls.JsonOptionsBase
+    {
+        #region Constructor
+        public JsonByKeysAndValues()
+        {
+            RegisterAllPorts();
+            this.PortDisconnected += JsonByKeysAndValues_PortDisconnected;
+
+            ArgumentLacing = LacingStrategy.Auto;
+
+            //ByKeysAndValuesCommand = new DelegateCommand(CreateJson, CanCreateJson);
+        }
+
+        [JsonConstructor]
+        public JsonByKeysAndValues(
+            IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+
+        }
+
+        private void JsonByKeysAndValues_PortDisconnected(PortModel obj)
+        {
+            MessageBox.Show(obj.Name);
+        }
+        #endregion
+
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (!InPorts[0].Connectors.Any())
+            {
+                return new[]
+                {
+                    AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode())
+                };
+            }
+
+            var nestedNode = AstFactory.BuildBooleanNode(nested);
+            var jsonOptionNode = AstFactory.BuildFunctionCall(
+                new Func<string, JsonOption>(JsonData.JsonOptions.ReturnOptionByName),
+                new List<AssociativeNode> { AstFactory.BuildStringNode(this.jsonOption.ToString())}
+                );
+
+            AssociativeNode byKeysAndValuesFuncNode =
+                AstFactory.BuildFunctionCall(
+                    new Func<List<string>, List<object>, bool, JsonData.JsonOption, JsonData.Elements.JsonObject>(JsonData.Elements.JsonObject.ByKeysAndValues),
+                    new List<AssociativeNode> { inputAstNodes[0], inputAstNodes[1], nestedNode, jsonOptionNode }
+                    );
+            return new[]
+            {
+                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), byKeysAndValuesFuncNode)
+            };
+        }
     }
 
 }
