@@ -167,11 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\Controls\JsonOptionsControl.xaml.cs">
+    <Compile Include="src\NodeModels\JsonOptionsControl.xaml.cs">
       <DependentUpon>JsonOptionsControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="src\Controls\NodeViewCustomizations.cs" />
-    <Compile Include="src\Elements\JsonObject.cs" />
+    <Compile Include="src\NodeModels\JsonOptionsBaseView.cs" />
+    <Compile Include="src\Elements\JsonObjectUI.cs" />
+    <Compile Include="src\NodeModels\JsonOptionsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="JsonDataUIImages.resx" />
@@ -194,7 +195,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="src\Controls\JsonOptionsControl.xaml">
+    <Page Include="src\NodeModels\JsonOptionsControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

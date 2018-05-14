@@ -8,13 +8,15 @@ using System.Linq;
 using CoreNodeModels;
 using Dynamo.Graph.Nodes;
 using Dynamo.UI.Commands;
+using Autodesk.DesignScript.Runtime;
 using JsonData;
 using ProtoCore.AST.AssociativeAST;
 using VMDataBridge;
 using Newtonsoft.Json;
+using JsonData.Elements;
 #endregion
 
-namespace JsonDataUI.JsonObject
+namespace JsonDataUI.Nodes
 {
 
     [NodeName("JsonOptions")]
@@ -89,38 +91,32 @@ namespace JsonDataUI.JsonObject
     [InPortNames("keys", "values")]
     [InPortTypes("List<string>", "List<object>")]
     [OutPortNames("jsonObject")]
-    [OutPortTypes("JsonObject")]
+    [OutPortTypes("JsonData.JsonObject")]
     [IsDesignScriptCompatible]
-    public class JsonByKeysAndValues : Controls.JsonOptionsBase
+    public class ByKeysAndValues : JsonOptionsBase
     {
         #region Constructor
-        public JsonByKeysAndValues()
+        public ByKeysAndValues() : base()
         {
-            RegisterAllPorts();
-            this.PortDisconnected += JsonByKeysAndValues_PortDisconnected;
-
-            ArgumentLacing = LacingStrategy.Auto;
-
-            //ByKeysAndValuesCommand = new DelegateCommand(CreateJson, CanCreateJson);
+            //RegisterAllPorts();
+            //bthis.PortDisconnected += JsonByKeysAndValues_PortDisconnected;
+            //ArgumentLacing = LacingStrategy.Auto;
         }
 
         [JsonConstructor]
-        public JsonByKeysAndValues(
+        public ByKeysAndValues(
             IEnumerable<PortModel> inPorts,
-            IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+            IEnumerable<PortModel> outPorts) : base(inPorts,outPorts)
         {
-
+            
         }
 
-        private void JsonByKeysAndValues_PortDisconnected(PortModel obj)
-        {
-            MessageBox.Show(obj.Name);
-        }
         #endregion
 
+        [IsVisibleInDynamoLibrary(false)]
         public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
         {
-            if (!InPorts[0].Connectors.Any())
+            if (IsPartiallyApplied)
             {
                 return new[]
                 {
@@ -128,20 +124,24 @@ namespace JsonDataUI.JsonObject
                 };
             }
 
-            var nestedNode = AstFactory.BuildBooleanNode(nested);
-            var jsonOptionNode = AstFactory.BuildFunctionCall(
-                new Func<string, JsonOption>(JsonData.JsonOptions.ReturnOptionByName),
-                new List<AssociativeNode> { AstFactory.BuildStringNode(this.jsonOption.ToString())}
-                );
+            var inputs = new List<AssociativeNode>()
+            {
+                inputAstNodes[0],
+                inputAstNodes[1],
+                NestedASTNode(this.nesting),
+                JsonOptionASTNode(this.option)
 
-            AssociativeNode byKeysAndValuesFuncNode =
+            };
+            AssociativeNode funcNode =
                 AstFactory.BuildFunctionCall(
-                    new Func<List<string>, List<object>, bool, JsonData.JsonOption, JsonData.Elements.JsonObject>(JsonData.Elements.JsonObject.ByKeysAndValues),
-                    new List<AssociativeNode> { inputAstNodes[0], inputAstNodes[1], nestedNode, jsonOptionNode }
+                    new Func<List<string>, List<object>, bool, JsonData.JsonOption, JsonObject>(JsonObject.ByKeysAndValues),
+                    inputs
                     );
+            
+
             return new[]
             {
-                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), byKeysAndValuesFuncNode)
+                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),funcNode)
             };
         }
     }

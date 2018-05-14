@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace JsonDataUI.Controls
+namespace JsonDataUI.Views
 {
     /// <summary>
     /// Interaction logic for JsonOptionsControl.xaml
@@ -23,10 +23,11 @@ namespace JsonDataUI.Controls
         public JsonOptionsControl()
         {
             InitializeComponent();
-            foreach(JsonData.JsonOption option in System.Enum.GetValues(typeof(JsonData.JsonOption)))
+            foreach(string option in Enum.GetNames(typeof(JsonData.JsonOption)))
             {
-                cBox_JsonOptions.Items.Add(System.Enum.GetName(typeof(JsonData.JsonOption), option));
+                cBox_JsonOptions.Items.Add(option);
             }
+            cBox_JsonOptions.SelectedIndex = 0;
         }
 
         private void cBox_JsonOptions_SelectionChanged(object sender, SelectionChangedEventArgs e)
