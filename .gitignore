@@ -310,3 +310,5 @@ $RECYCLE.BIN/
 #Custom
 samples/wiki/datasets/*
 !samples/wiki/datasets/*.zip
+/JsonDataUI/Properties/Resources.Designer.cs
+/JsonDataUI/Properties/Resources.resx

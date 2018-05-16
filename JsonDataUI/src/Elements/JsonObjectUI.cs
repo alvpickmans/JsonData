@@ -85,22 +85,19 @@ namespace JsonDataUI.Nodes
 
     }
 
-    [NodeName("JsonObject.ByKeysAndValuesUI")]
-    [NodeCategory("JsonData.JsonObjectUI")]
-    [NodeDescription("Create JsonObject by keys and values")]
-    [InPortNames("keys", "values")]
-    [InPortTypes("List<string>", "List<object>")]
-    [OutPortNames("jsonObject")]
-    [OutPortTypes("JsonData.JsonObject")]
+    [NodeName("JsonObject.ByKeysAndValues")]
+    [NodeCategory("JsonData.Create")]
+    [NodeDescription(@"JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string.")]
+    [NodeSearchTags("json", "bykeysandvalues", "create")]
     [IsDesignScriptCompatible]
     public class ByKeysAndValues : JsonOptionsBase
     {
         #region Constructor
         public ByKeysAndValues() : base()
         {
-            //RegisterAllPorts();
-            //bthis.PortDisconnected += JsonByKeysAndValues_PortDisconnected;
-            //ArgumentLacing = LacingStrategy.Auto;
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("keys", Properties.Resources.JsonObject_Keys_Set)));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("values", Properties.Resources.JsonObject_Values_Set)));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("jsonObject", Properties.Resources.JsonObject_Json_Get)));
         }
 
         [JsonConstructor]
@@ -124,6 +121,11 @@ namespace JsonDataUI.Nodes
                 };
             }
 
+
+            // Level and Replication Guide
+            // https://github.com/DynamoDS/Dynamo/blob/c4a3305559c04f04e6757a5db8a55bc98eae6c15/src/DynamoCore/Graph/Nodes/NodeModel.cs#L1328
+            UseLevelAndReplicationGuide(inputAstNodes);
+
             var inputs = new List<AssociativeNode>()
             {
                 inputAstNodes[0],
@@ -132,6 +134,7 @@ namespace JsonDataUI.Nodes
                 JsonOptionASTNode(this.option)
 
             };
+
             AssociativeNode funcNode =
                 AstFactory.BuildFunctionCall(
                     new Func<List<string>, List<object>, bool, JsonData.JsonOption, JsonObject>(JsonObject.ByKeysAndValues),

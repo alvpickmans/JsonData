@@ -229,6 +229,7 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, create, bykeysandvalues
         /// </search> 
+        [IsVisibleInDynamoLibrary(false)]
         public static JsonObject ByKeysAndValues([ArbitraryDimensionArrayImport]List<string> keys, 
             [KeepReference] [ArbitraryDimensionArrayImport]List<object> values, 
             [DefaultArgument("true")] bool nesting, 
