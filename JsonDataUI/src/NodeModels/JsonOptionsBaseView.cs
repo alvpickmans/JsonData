@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
+using System.Windows.Controls;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
 using Dynamo.Controls;
@@ -32,6 +32,12 @@ namespace JsonDataUI.Views
             nodeView.inputGrid.Children.Add(JsonOptionsControl);
 
             JsonOptionsControl.DataContext = model;
+
+            // Hiding Dropdown for options if JsonOption not needed for method.
+            if (!model.NeedsOptions)
+            {
+                JsonOptionsControl.cBox_JsonOptions.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         public void Dispose() { }

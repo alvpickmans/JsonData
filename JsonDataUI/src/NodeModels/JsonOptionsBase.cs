@@ -19,7 +19,7 @@ namespace JsonDataUI.Nodes
     public abstract class JsonOptionsBase : NodeModel
     {
         #region Internal Properties
-
+        internal bool NeedsOptions;
         internal bool nesting;
         internal string option;
         internal string[] options = new string[3] { "None", "Update", "Combine" };
@@ -74,12 +74,24 @@ namespace JsonDataUI.Nodes
             return AstFactory.BuildBooleanNode(nesting);
         }
 
+        public List<AssociativeNode> InputNodes(List<AssociativeNode> inputAstNodes)
+        {
+            var inputs = new List<AssociativeNode>(inputAstNodes);
+            inputs.Add(NestedASTNode(this.nesting));
+            if (NeedsOptions)
+            {
+                inputs.Add(JsonOptionASTNode(this.option));
+            }
+            return inputs;
+        }
+
         #endregion
 
         #region Constructors
 
-        protected JsonOptionsBase()
+        protected JsonOptionsBase(bool needsOptions = true)
         {
+            NeedsOptions = needsOptions;
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Auto;
             PopulateView();
