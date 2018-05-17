@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
 using Newtonsoft.Json;
+using Dynamo.Graph.Nodes;
 
 namespace JsonData.Elements
 {
@@ -12,20 +13,23 @@ namespace JsonData.Elements
     /// <summary>
     /// Options for JsonObjects
     /// </summary>
-    [IsVisibleInDynamoLibrary(false)]
+    //[SupressImportIntoVM]
     public enum JsonOption
     {
         /// <summary>
-        /// No action
+        /// No action.
         /// </summary>
+        [SupressImportIntoVM]
         None,
         /// <summary>
-        /// Update if value present in object
+        /// If object contains the key, update its value.
         /// </summary>
+        [SupressImportIntoVM]
         Update,
         /// <summary>
-        /// Combine Values
+        /// If object contains the key, combine the values.
         /// </summary>
+        [SupressImportIntoVM]
         Combine
     }
 
