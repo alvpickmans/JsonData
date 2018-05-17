@@ -190,12 +190,10 @@
     <None Include="packages\JsonData\extra\JsonDataSample.dyn" />
     <None Include="packages\JsonData\extra\outputJsonFileSample.json" />
     <None Include="packages\JsonData\pkg.json" />
-    <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="JsonData.Migrations.xml" />
     <Content Include="JsonData_DynamoCustomization.xml" />
-    <None Include="LICENSE" />
     <Content Include="packages\JsonData\bin\JsonData_DynamoCustomization.xml" />
     <Content Include="packages\JsonData\bin\JsonData.dll" />
     <Content Include="packages\JsonData\bin\JsonData.Migrations.xml" />

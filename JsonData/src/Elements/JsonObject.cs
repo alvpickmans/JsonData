@@ -262,12 +262,13 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, add
         /// </search> 
-        public JsonObject Add(List<string> key, List<object> value, [DefaultArgument("true")] bool nesting, [DefaultArgument("JsonOption.None")] JsonOption jsonOption)
+        [IsVisibleInDynamoLibrary(false)]
+        public static JsonObject Add(JsonObject jsonObject, List<string> key, List<object> value, bool nesting, JsonOption jsonOption)
         {
             if(key == null) { throw new ArgumentNullException("key"); }
             if(value == null) { throw new ArgumentNullException("value"); }
-            List<string> keys = this.Keys.Concat(key).ToList();
-            List<object> values = this.Values.Concat(value).ToList();
+            List<string> keys = jsonObject.Keys.Concat(key).ToList();
+            List<object> values = jsonObject.Values.Concat(value).ToList();
             
             return new JsonObject(keys, values, nesting, jsonOption);
         }
@@ -282,9 +283,10 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, remove
         /// </search> 
-        public JsonObject Remove(List<string> keys, bool nesting = true)
+        [IsVisibleInDynamoLibrary(false)]
+        public static JsonObject Remove(JsonObject jsonObject, List<string> keys, bool nesting = true)
         {
-            Dictionary<string, object> dict = new Dictionary<string, object>(this.dict);
+            Dictionary<string, object> dict = new Dictionary<string, object>(jsonObject.dict);
             
             foreach(string key in keys)
             {
@@ -294,7 +296,7 @@ namespace JsonData.Elements
                     string currentKey = keysArray.First();
                     string nestedKey = String.Join(".", keysArray.Skip(1).ToArray());
                     JsonObject json = dict[currentKey] as JsonObject;
-                    JsonObject returnedJson = json.Remove(new List<string>() { nestedKey }, true);
+                    JsonObject returnedJson = JsonObject.Remove(json, new List<string>() { nestedKey }, true);
                     if(returnedJson.Size > 0)
                     {
                         dict[currentKey] = returnedJson;
@@ -322,12 +324,13 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, merge
         /// </search> 
-        public JsonObject Merge(List<JsonObject> others, [DefaultArgument("JsonOption.None")] JsonOption jsonOption)
+        [IsVisibleInDynamoLibrary(false)]
+        public static JsonObject Merge(JsonObject jsonObject, List<JsonObject> others, [DefaultArgument("JsonOption.None")] JsonOption jsonOption)
         {
             Dictionary<string, object> dict = new Dictionary<string, object>();
             List<string> keys = new List<string>();
             List<object> values = new List<object>();
-            foreach (KeyValuePair<string, object> x in this.dict.ToList())
+            foreach (KeyValuePair<string, object> x in jsonObject.dict.ToList())
             {
                 keys.Add(x.Key);
                 values.Add(x.Value);
