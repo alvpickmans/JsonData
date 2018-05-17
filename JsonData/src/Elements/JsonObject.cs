@@ -1,5 +1,6 @@
 ﻿#region namesapces
 using Autodesk.DesignScript.Runtime;
+using Dynamo.Library;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -201,13 +202,19 @@ namespace JsonData.Elements
             {
                 string[] keys = key.Split('.');
                 string restOfKeys = String.Join(".", keys.Skip(1).ToArray());
-                // As it is nested, the returned value should be a JsonObject so it is casted as so.
-                JsonObject json = jsonObject.dict[keys.First()] as JsonObject;
-                return GetValueRecursive(json, restOfKeys, nesting);
+                if(jsonObject.dict[keys.First()].GetType() == typeof(JsonObject))
+                {
+                    JsonObject json = jsonObject.dict[keys.First()] as JsonObject;
+                    return GetValueRecursive(json, restOfKeys, nesting);
+                }
+                else
+                {
+                    return null;
+                }
             }
             else
             {
-                return jsonObject.dict[key];
+                return jsonObject.dict.ContainsKey(key) ? jsonObject.dict[key] : null;
             }
         }
 
@@ -243,6 +250,30 @@ namespace JsonData.Elements
             }
             if (values.Contains(null)) { throw new ArgumentNullException("values", "Values' input contains one or more null elements."); }
             return new JsonObject(keys, values, nesting, jsonOption);
+        }
+
+        /// <summary>
+        /// Creates a new instance of JsonObject from a Dynamo Dictionary's components.
+        /// </summary>
+        /// <param name="dictionary">DesignDcript.BuiltIn.Dictionary</param>
+        /// <returns name="jsonObject">New JsonObject</returns>
+        public static JsonObject ByDictionary(DesignScript.Builtin.Dictionary dictionary)
+        {
+            List<string> keys = dictionary.Keys.ToList();
+            List<object> values = new List<object>();
+            foreach(var value in dictionary.Values)
+            {
+                if(value.GetType() == typeof(DesignScript.Builtin.Dictionary))
+                {
+                    values.Add(JsonObject.ByDictionary(value as DesignScript.Builtin.Dictionary));
+                }
+                else
+                {
+                    values.Add(value);
+                }
+            }
+
+            return new JsonObject(keys, values, true, JsonOption.None);
         }
 
         #endregion
@@ -357,9 +388,10 @@ namespace JsonData.Elements
         /// <search>
         /// json, jsonobject, search, bykey
         /// </search> 
-        public object GetValueByKey(string key, bool nesting = true)
+        [IsVisibleInDynamoLibrary(false)]
+        public static object GetValueByKey(JsonObject jsonObject, string key, bool nesting = true)
         {
-            return GetValueRecursive(this, key, nesting);
+            return GetValueRecursive(jsonObject, key, nesting);
         }
 
         /// <summary>
@@ -456,6 +488,29 @@ namespace JsonData.Elements
                 {"out", outJson }
             };
 
+        }
+
+        /// <summary>
+        /// Creates a new instance of Dynamo Dictionary from a JsonObject's components
+        /// </summary>
+        /// <param name="jsonObject">JsonObject</param>
+        /// <returns name="dictionary">DesignScript.BuiltIn.Dictionary</returns>
+        public static DesignScript.Builtin.Dictionary ToDictionary(JsonObject jsonObject)
+        {
+            List<string> keys = jsonObject.Keys;
+            List<object> values = new List<object>();
+            foreach (var value in jsonObject.Values)
+            {
+                if (value.GetType() == typeof(JsonObject))
+                {
+                    values.Add(JsonObject.ToDictionary(value as JsonObject));
+                }
+                else
+                {
+                    values.Add(value);
+                }
+            }
+            return DesignScript.Builtin.Dictionary.ByKeysValues(keys, values);
         }
 
         /// <summary>

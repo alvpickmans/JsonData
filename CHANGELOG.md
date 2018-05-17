@@ -9,6 +9,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 ### Added
 - Abstract `JsonOptionsBase` class inheriting from `NodeModel`, providing a reusable UI for nodes requiring `JsonOption` and `Nesting` options.
 - Change log.
+- Support for Dynamo Dictionaries (`DesignScript.Builtin.Dictionary`).
 
 ### Changed
 

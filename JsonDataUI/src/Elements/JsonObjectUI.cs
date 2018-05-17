@@ -171,6 +171,56 @@ True, value associated with the key will be updated. An error will be thrown oth
         }
     }
 
+    [NodeName("JsonObject.GetValueByKey")]
+    [NodeCategory("JsonData")]
+    [NodeDescription(@"Returns the value associated with the given key from the dict. Returns null if key is not found.")]
+    [NodeSearchTags("json", "getbykey", "getvaluebykey")]
+    [IsDesignScriptCompatible]
+    public class GetValueByKey : JsonOptionsBase
+    {
+        #region Constructor
+        public GetValueByKey() : base()
+        {
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("jsonObject", "JsonObject")));
+            InPorts.Add(new PortModel(PortType.Input, this, new PortData("keys", "Key(s) to query.")));
+            OutPorts.Add(new PortModel(PortType.Output, this, new PortData("value", "Value associated to input key.")));
+            this.NeedsOptions = false;
+        }
+
+        [JsonConstructor]
+        public GetValueByKey(
+            IEnumerable<PortModel> inPorts,
+            IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
+        {
+
+        }
+
+        #endregion
+
+        [IsVisibleInDynamoLibrary(false)]
+        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
+        {
+            if (IsPartiallyApplied)
+            {
+                return new[]
+                {
+                    AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode())
+                };
+            }
+            UseLevelAndReplicationGuide(inputAstNodes);
+
+            return new[]
+            {
+                AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
+                    AstFactory.BuildFunctionCall(
+                            new Func<JsonObject, string, bool, object>(JsonObject.GetValueByKey),
+                            InputNodes(inputAstNodes)
+                        )
+                    )
+            };
+        }
+    }
+
     [NodeName("JsonObject.Merge")]
     [NodeCategory("JsonData")]
     [NodeDescription(@"Merge one JsonObject with one or multiple other JsonObjects.")]
