@@ -33,10 +33,17 @@ namespace JsonDataUI.Views
 
             JsonOptionsControl.DataContext = model;
 
-            // Hiding Dropdown for options if JsonOption not needed for method.
+            // Hiding and disabling Dropdown for options if JsonOption not needed for method.
             if (!model.NeedsOptions)
             {
                 JsonOptionsControl.cBox_JsonOptions.Visibility = System.Windows.Visibility.Collapsed;
+                JsonOptionsControl.cBox_JsonOptions.IsEnabled = false;
+            }
+
+            if (!model.NeedsNesting)
+            {
+                JsonOptionsControl.check_Nesting.IsEnabled = false;
+                JsonOptionsControl.check_Nesting.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 

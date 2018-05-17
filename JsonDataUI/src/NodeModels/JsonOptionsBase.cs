@@ -19,10 +19,23 @@ namespace JsonDataUI.Nodes
     public abstract class JsonOptionsBase : NodeModel
     {
         #region Internal Properties
-        internal bool NeedsOptions;
+        internal bool needsOptions = true;
+        internal bool needsNesting = true;
         internal bool nesting;
         internal string option;
         internal string[] options = new string[3] { "None", "Update", "Combine" };
+
+        internal bool NeedsOptions
+        {
+            get { return needsOptions; }
+            set { needsOptions = value; }
+        }
+
+        internal bool NeedsNesting
+        {
+            get { return needsNesting; }
+            set { needsNesting = value; }
+        }
         #endregion
 
         #region Properties
@@ -53,6 +66,7 @@ namespace JsonDataUI.Nodes
         }
 
 
+
         /// <summary>
         /// AssociativeNode for JsonOption property
         /// </summary>
@@ -77,11 +91,8 @@ namespace JsonDataUI.Nodes
         public List<AssociativeNode> InputNodes(List<AssociativeNode> inputAstNodes)
         {
             var inputs = new List<AssociativeNode>(inputAstNodes);
-            inputs.Add(NestedASTNode(this.nesting));
-            if (NeedsOptions)
-            {
-                inputs.Add(JsonOptionASTNode(this.option));
-            }
+            if (NeedsNesting) { inputs.Add(NestedASTNode(this.nesting)); }
+            if (NeedsOptions) { inputs.Add(JsonOptionASTNode(this.option)); }
             return inputs;
         }
 
@@ -89,9 +100,8 @@ namespace JsonDataUI.Nodes
 
         #region Constructors
 
-        protected JsonOptionsBase(bool needsOptions = true)
+        protected JsonOptionsBase()
         {
-            NeedsOptions = needsOptions;
             RegisterAllPorts();
             ArgumentLacing = LacingStrategy.Auto;
             PopulateView();
@@ -102,7 +112,7 @@ namespace JsonDataUI.Nodes
             IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-            //PopulateView();
+           
         }
 
         #endregion
