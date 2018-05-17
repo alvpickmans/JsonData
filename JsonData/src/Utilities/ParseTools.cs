@@ -10,7 +10,7 @@ using Microsoft.VisualBasic.FileIO;
 using System.Linq;
 using System.Xml.Schema;
 using System.Xml.XPath;
-using JsonData;
+using JsonData.Elements;
 #endregion
 
 namespace JsonData.Utilities

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
 using Newtonsoft.Json;
 
-namespace JsonData
+namespace JsonData.Elements
 {
 
     /// <summary>

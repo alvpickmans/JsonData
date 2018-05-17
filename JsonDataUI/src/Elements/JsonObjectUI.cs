@@ -18,73 +18,6 @@ using JsonData.Elements;
 
 namespace JsonDataUI.Nodes
 {
-
-    [NodeName("JsonOptions")]
-    [NodeCategory("JsonData.JsonObject")]
-    [NodeDescription("Options for updating JsonObjects")]
-    [OutPortTypes("JsonOption")]
-    [OutPortDescriptions("Option to update a JsonObject when keys are already present in the object")]
-    [IsDesignScriptCompatible]
-    public class JsonOptions : DSDropDownBase
-    {
-        public JsonOptions() : base("JsonOption") { }
-
-        [JsonConstructor]
-        public JsonOptions(IEnumerable<PortModel> inPorts, IEnumerable<PortModel> outPorts) : base("JsonOption", inPorts, outPorts) { }
-
-        protected override SelectionState PopulateItemsCore( string currentSelection)
-        {
-            PopulateDropDownItems(currentSelection);
-            return SelectionState.Done;
-        }
-
-        public void PopulateDropDownItems(string selection)
-        {
-            if(selection == "" || Items.Count == 0)
-            {
-                Items.Clear();
-
-                var newItems = new List<DynamoDropDownItem>()
-                {
-                    new DynamoDropDownItem("None", JsonOption.None),
-                    new DynamoDropDownItem("Update", JsonOption.Update),
-                    new DynamoDropDownItem("Combine", JsonOption.Combine)
-                };
-
-                    newItems.ForEach(item => Items.Add(item));
-                SelectedIndex = 0;
-            }
-            else
-            {
-                int index = Items.ToList().FindIndex(item => item.Name == selection);
-                SelectedIndex = index;
-            }
-            
-        }
-
-        public override IEnumerable<AssociativeNode> BuildOutputAst(List<AssociativeNode> inputAstNodes)
-        {
-            if (Items.Count == 0 || SelectedIndex == -1)
-            {
-                return new[] { AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), AstFactory.BuildNullNode()) };
-            }
-
-            var args = new List<AssociativeNode>
-            {
-                AstFactory.BuildStringNode(Items[SelectedIndex].Name)
-            };
-            
-            var functionCall = AstFactory.BuildFunctionCall<string, JsonOption>(
-                JsonData.JsonOptions.ReturnOptionByName,
-                args
-                );
-            var assign = AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0), functionCall);
-
-            return new List<AssociativeNode> { assign };
-        }
-
-    }
-
     [NodeName("JsonObject.ByKeysAndValues")]
     [NodeCategory("JsonData.Create")]
     [NodeDescription("JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string.")]
@@ -129,7 +62,7 @@ namespace JsonDataUI.Nodes
             {
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
-                            new Func<List<string>, List<object>, bool, JsonData.JsonOption, JsonObject>(JsonObject.ByKeysAndValues),
+                            new Func<List<string>, List<object>, bool, JsonOption, JsonObject>(JsonObject.ByKeysAndValues),
                             InputNodes(inputAstNodes)
                         )
                     )
@@ -180,7 +113,7 @@ True, value associated with the key will be updated. An error will be thrown oth
             {
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
-                            new Func<JsonObject, List<string>, List<object>, bool, JsonData.JsonOption, JsonObject>(JsonObject.Add),
+                            new Func<JsonObject, List<string>, List<object>, bool, JsonOption, JsonObject>(JsonObject.Add),
                             InputNodes(inputAstNodes)
                         )
                     )

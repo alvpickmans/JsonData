@@ -13,6 +13,7 @@ using ProtoCore.AST.AssociativeAST;
 using Newtonsoft.Json;
 using Dynamo.Graph;
 using System.Xml;
+using JsonData.Elements;
 
 namespace JsonDataUI.Nodes
 {
@@ -74,7 +75,7 @@ namespace JsonDataUI.Nodes
         public static AssociativeNode JsonOptionASTNode(string option)
         {
             return AstFactory.BuildFunctionCall(
-            new Func<string, JsonData.JsonOption>(JsonData.JsonOptions.ReturnOptionByName),
+            new Func<string, JsonOption>(JsonOptions.ReturnOptionByName),
             new List<AssociativeNode> { AstFactory.BuildStringNode(option) }
             );
            

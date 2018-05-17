@@ -23,7 +23,7 @@ namespace JsonDataUI.Views
         public JsonOptionsControl()
         {
             InitializeComponent();
-            foreach(string option in Enum.GetNames(typeof(JsonData.JsonOption)))
+            foreach(string option in Enum.GetNames(typeof(JsonData.Elements.JsonOption)))
             {
                 cBox_JsonOptions.Items.Add(option);
             }
