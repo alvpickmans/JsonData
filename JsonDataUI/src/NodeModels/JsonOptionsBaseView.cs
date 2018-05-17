@@ -33,6 +33,11 @@ namespace JsonDataUI.Views
 
             JsonOptionsControl.DataContext = model;
 
+            JsonOptionsControl.cBox_JsonOptions.ToolTip = @"Handling options where duplicate keys are found. Use JsonOptions 
+                dropdown node to select appropiate behaviour";
+            JsonOptionsControl.check_Nesting.ToolTip = @"Apply nesting behaviour if key input is a single string concatenated by
+                dots, representing the desired nested structure";
+
             // Hiding and disabling Dropdown for options if JsonOption not needed for method.
             if (!model.NeedsOptions)
             {

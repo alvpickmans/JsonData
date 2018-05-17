@@ -18,7 +18,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <DockPanel>
-        <ComboBox x:Name="cBox_JsonOptions" Margin="10,10,10,5" Height="25" DockPanel.Dock="Top" SelectedValue="{Binding Option, Mode=TwoWay}" ToolTip="Select the option to handle duplicated keys."/>
+        <ComboBox x:Name="cBox_JsonOptions" Margin="10,10,10,5" Height="25" DockPanel.Dock="Top" SelectedValue="{Binding Option, Mode=TwoWay}"/>
         <DockPanel LastChildFill="False" Margin="10,0" Grid.Row="1" Height="30">
             <CheckBox x:Name="check_Nesting" Content="Nested" Width="124" IsChecked="{Binding Nesting, Mode=TwoWay}" Foreground="Black" Background="White"/>
         </DockPanel>
