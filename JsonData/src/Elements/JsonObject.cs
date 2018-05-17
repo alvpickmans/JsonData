@@ -255,7 +255,7 @@ namespace JsonData.Elements
         /// <summary>
         /// Creates a new instance of JsonObject from a Dynamo Dictionary's components.
         /// </summary>
-        /// <param name="dictionary">DesignDcript.BuiltIn.Dictionary</param>
+        /// <param name="dictionary">DesignDcript.Builtin.Dictionary</param>
         /// <returns name="jsonObject">New JsonObject</returns>
         public static JsonObject ByDictionary(DesignScript.Builtin.Dictionary dictionary)
         {
@@ -494,7 +494,7 @@ namespace JsonData.Elements
         /// Creates a new instance of Dynamo Dictionary from a JsonObject's components
         /// </summary>
         /// <param name="jsonObject">JsonObject</param>
-        /// <returns name="dictionary">DesignScript.BuiltIn.Dictionary</returns>
+        /// <returns name="dictionary">DesignScript.Builtin.Dictionary</returns>
         public static DesignScript.Builtin.Dictionary ToDictionary(JsonObject jsonObject)
         {
             List<string> keys = jsonObject.Keys;

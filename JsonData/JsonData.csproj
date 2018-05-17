@@ -265,6 +265,10 @@
     <None Include="Resources\Images\Large\JsonData.Utilities.Parse.JsonToString.Large.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.String.Small.png" />
     <None Include="Resources\Images\Small\JsonData.Utilities.Parse.JsonToString.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.ToDictionary.Small.png" />
+    <None Include="Resources\Images\Small\JsonData.Elements.JsonObject.ByDictionary.Small.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.ToDictionary.Large.png" />
+    <None Include="Resources\Images\Large\JsonData.Elements.JsonObject.ByDictionary.Large.png" />
     <Content Include="samples\images\JsonDataHeader.png" />
   </ItemGroup>
   <ItemGroup>
