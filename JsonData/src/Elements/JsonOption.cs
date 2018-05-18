@@ -13,23 +13,26 @@ namespace JsonData.Elements
     /// <summary>
     /// Options for JsonObjects
     /// </summary>
-    //[SupressImportIntoVM]
+    [IsVisibleInDynamoLibrary(false)]
     public enum JsonOption
     {
         /// <summary>
+        /// You are reading this because of a known issue on Dynamo 2.0. These options are implemented 
+        /// and embeded on nodes with dropdown selector. They will automatically hide once bug is resolve on next version.
         /// No action.
         /// </summary>
-        [SupressImportIntoVM]
         None,
         /// <summary>
+        /// You are reading this because of a known issue on Dynamo 2.0. These options are implemented 
+        /// and embeded on nodes with dropdown selector. They will automatically hide once bug is resolve on next version.
         /// If object contains the key, update its value.
         /// </summary>
-        [SupressImportIntoVM]
         Update,
         /// <summary>
+        /// You are reading this because of a known issue on Dynamo 2.0. These options are implemented 
+        /// and embeded on nodes with dropdown selector. They will automatically hide once bug is resolve on next version.
         /// If object contains the key, combine the values.
         /// </summary>
-        [SupressImportIntoVM]
         Combine
     }
 
