@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="JsonDataUI.Views.JsonOptionsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JsonDataUI.Views"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             mc:Ignorable="d" Width="150">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <DockPanel>
+        <ComboBox x:Name="cBox_JsonOptions" Margin="10,10,10,5" Height="25" DockPanel.Dock="Top" SelectedValue="{Binding Option, Mode=TwoWay}"/>
+        <DockPanel LastChildFill="False" Margin="10,0" Grid.Row="1" Height="30">
+            <CheckBox x:Name="check_Nesting" Content="Nested" Width="124" IsChecked="{Binding Nesting, Mode=TwoWay}" Foreground="Black" Background="White"/>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

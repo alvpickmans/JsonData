@@ -5,7 +5,7 @@
   </assembly>
     <namespaces>
       <namespace name="JsonData.Elements">
-        <category>JsonData.Elements</category>
+        <category>JsonData</category>
       </namespace>
       <namespace name="JsonData.Utilities">
         <category>JsonData.Utilities</category>

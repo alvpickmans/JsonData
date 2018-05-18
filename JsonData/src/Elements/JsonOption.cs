@@ -4,33 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.DesignScript.Runtime;
+using Newtonsoft.Json;
+using Dynamo.Graph.Nodes;
 
-namespace JsonData
+namespace JsonData.Elements
 {
 
     /// <summary>
     /// Options for JsonObjects
     /// </summary>
-    [IsVisibleInDynamoLibrary(false)]
+    //[SupressImportIntoVM]
     public enum JsonOption
     {
         /// <summary>
-        /// No action
+        /// No action.
         /// </summary>
+        [SupressImportIntoVM]
         None,
         /// <summary>
-        /// Update if value present in object
+        /// If object contains the key, update its value.
         /// </summary>
+        [SupressImportIntoVM]
         Update,
         /// <summary>
-        /// Combine Values
+        /// If object contains the key, combine the values.
         /// </summary>
+        [SupressImportIntoVM]
         Combine
     }
 
     /// <summary>
     /// Static Class wrapping method to return JsonOption by its name
     /// </summary>
+    [IsVisibleInDynamoLibrary(false)]
     public static class JsonOptions
     {
         /// <summary>
