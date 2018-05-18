@@ -33,10 +33,10 @@ namespace JsonData.Elements.Tests
         [Category("UnitTests")]
         public static void GetValueByKeyTest()
         {
-            Assert.AreEqual("value", jsonNested.GetValueByKey("oneKey"));
-            Assert.AreEqual(1, json.GetValueByKey("nested.key", false));
-            Assert.AreEqual(1, jsonNested.GetValueByKey("nested.key"));
-            Assert.AreEqual(new List<object>() { 1, 2, 3 }, jsonNested.GetValueByKey("two.nested.keys"));
+            Assert.AreEqual("value", JsonObject.GetValueByKey(jsonNested,"oneKey"));
+            Assert.AreEqual(1, JsonObject.GetValueByKey(json,"nested.key", false));
+            Assert.AreEqual(1, JsonObject.GetValueByKey(jsonNested,"nested.key"));
+            Assert.AreEqual(new List<object>() { 1, 2, 3 }, JsonObject.GetValueByKey(jsonNested,"two.nested.keys"));
 
         }
         
@@ -48,7 +48,7 @@ namespace JsonData.Elements.Tests
             List<string> k = new List<string>() { "nested.one", "nested.two" };
             List<object> v = new List<object>() { 1, 2 };
             JsonObject jsonNested = JsonObject.ByKeysAndValues(k, v, true, JsonOption.None);
-            Assert.IsInstanceOf(typeof(JsonObject), jsonNested.GetValueByKey("nested"));
+            Assert.IsInstanceOf(typeof(JsonObject), JsonObject.GetValueByKey(jsonNested,"nested"));
         }
 
         [Test]
@@ -100,15 +100,15 @@ namespace JsonData.Elements.Tests
             var values = new List<object>() { 1, 2, 3.1, 3.2 };
             JsonObject json = JsonObject.ByKeysAndValues(keys, values, true, JsonOption.None);
 
-            JsonObject removeAll = json.Remove(keys, true);
+            JsonObject removeAll = JsonObject.Remove(json,keys, true);
             Assert.AreEqual(0, removeAll.Size);
             Assert.AreEqual(3, json.Size);
 
-            JsonObject removeSingle = json.Remove(new List<string>() { "first", "second" }, true);
+            JsonObject removeSingle = JsonObject.Remove(json, new List<string>() { "first", "second" }, true);
             Assert.AreEqual(1, removeSingle.Size);
             Assert.AreEqual(3, json.Size);
 
-            JsonObject removeNested = json.Remove(new List<string>() { "nested.first" }, true);
+            JsonObject removeNested = JsonObject.Remove(json, new List<string>() { "nested.first" }, true);
             Assert.AreEqual(3, removeNested.Size);
             Assert.IsInstanceOf(typeof(int), removeNested.Values[0]);
             Assert.IsInstanceOf(typeof(JsonObject), removeNested.Values[2]);
