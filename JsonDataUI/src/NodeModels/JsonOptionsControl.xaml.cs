@@ -27,7 +27,6 @@ namespace JsonDataUI.Views
             {
                 cBox_JsonOptions.Items.Add(option);
             }
-            cBox_JsonOptions.SelectedIndex = 0;
         }
 
         private void cBox_JsonOptions_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -68,35 +68,7 @@ namespace JsonDataUI.Nodes
 
 
 
-        /// <summary>
-        /// AssociativeNode for JsonOption property
-        /// </summary>
-        /// <returns>Function call returning selected JsonOption</returns>
-        public static AssociativeNode JsonOptionASTNode(string option)
-        {
-            return AstFactory.BuildFunctionCall(
-            new Func<string, JsonOption>(JsonOptions.ReturnOptionByName),
-            new List<AssociativeNode> { AstFactory.BuildStringNode(option) }
-            );
-           
-        }
-
-        /// <summary>
-        /// AssociativeNode for Nested property
-        /// </summary>
-        public static AssociativeNode NestedASTNode (bool nesting)
-        {
-            return AstFactory.BuildBooleanNode(nesting);
-        }
-
-        public List<AssociativeNode> InputNodes(List<AssociativeNode> inputAstNodes)
-        {
-            var inputs = new List<AssociativeNode>(inputAstNodes);
-            if (NeedsNesting) { inputs.Add(NestedASTNode(this.nesting)); }
-            if (NeedsOptions) { inputs.Add(JsonOptionASTNode(this.option)); }
-            return inputs;
-        }
-
+        
         #endregion
 
         #region Constructors
@@ -125,6 +97,36 @@ namespace JsonDataUI.Nodes
             this.option = "None";
             this.nesting = true;
         }
+
+        /// <summary>
+        /// AssociativeNode for JsonOption property
+        /// </summary>
+        /// <returns>Function call returning selected JsonOption</returns>
+        public static AssociativeNode JsonOptionASTNode(string option)
+        {
+            return AstFactory.BuildFunctionCall(
+            new Func<string, JsonOption>(JsonOptions.ReturnOptionByName),
+            new List<AssociativeNode> { AstFactory.BuildStringNode(option) }
+            );
+
+        }
+
+        /// <summary>
+        /// AssociativeNode for Nested property
+        /// </summary>
+        public static AssociativeNode NestedASTNode(bool nesting)
+        {
+            return AstFactory.BuildBooleanNode(nesting);
+        }
+
+        public List<AssociativeNode> InputNodes(List<AssociativeNode> inputAstNodes)
+        {
+            var inputs = new List<AssociativeNode>(inputAstNodes);
+            if (NeedsNesting) { inputs.Add(NestedASTNode(this.nesting)); }
+            if (NeedsOptions) { inputs.Add(JsonOptionASTNode(this.option)); }
+            return inputs;
+        }
+
 
         #endregion
     }
