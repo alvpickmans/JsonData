@@ -1,5 +1,3 @@
-![JsonData Header](samples/images/JsonDataHeader.png)
-
 # JsonData
 JsonData is a [Dynamo](http://www.dynamobim.org) package to provide extra functionalities when handling data, based on Newtonsoft JsonNet C# library.
 
