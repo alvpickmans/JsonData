@@ -66,9 +66,6 @@ namespace JsonDataUI.Nodes
             }
         }
 
-
-
-        
         #endregion
 
         #region Constructors
@@ -119,7 +116,7 @@ namespace JsonDataUI.Nodes
             return AstFactory.BuildBooleanNode(nesting);
         }
 
-        public List<AssociativeNode> InputNodes(List<AssociativeNode> inputAstNodes)
+        public List<AssociativeNode> ReturnInputNodes(List<AssociativeNode> inputAstNodes)
         {
             var inputs = new List<AssociativeNode>(inputAstNodes);
             if (NeedsNesting) { inputs.Add(NestedASTNode(this.nesting)); }

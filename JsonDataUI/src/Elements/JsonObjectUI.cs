@@ -21,6 +21,8 @@ namespace JsonDataUI.Nodes
     [NodeName("JsonObject.ByKeysAndValues")]
     [NodeCategory("JsonData.Create")]
     [NodeDescription("JsonObject constructor by a given key-value pair. It accepts nested structures by providing keys divided by points as a single string.")]
+    [InPortTypes("string[]", "var[]")]
+    [OutPortTypes("JsonData.Elements.JsonObject")]
     [NodeSearchTags("json", "bykeysandvalues", "create")]
     [IsDesignScriptCompatible]
     public class ByKeysAndValues : JsonOptionsBase
@@ -63,7 +65,7 @@ namespace JsonDataUI.Nodes
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
                             new Func<List<string>, List<object>, bool, JsonOption, JsonObject>(JsonObject.ByKeysAndValues),
-                            InputNodes(inputAstNodes)
+                            ReturnInputNodes(inputAstNodes)
                         )
                     )
             };
@@ -74,7 +76,7 @@ namespace JsonDataUI.Nodes
     [NodeCategory("JsonData")]
     [NodeDescription(@"Adds new attribute to the JsonObject. If given key already on the object and update set to 
 True, value associated with the key will be updated. An error will be thrown otherwise.")]
-    [NodeSearchTags("json", "bykeysandvalues", "create")]
+    [NodeSearchTags("json", "bykeysandvalues", "create", "new")]
     [IsDesignScriptCompatible]
     public class Add : JsonOptionsBase
     {
@@ -114,7 +116,7 @@ True, value associated with the key will be updated. An error will be thrown oth
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
                             new Func<JsonObject, List<string>, List<object>, bool, JsonOption, JsonObject>(JsonObject.Add),
-                            InputNodes(inputAstNodes)
+                            ReturnInputNodes(inputAstNodes)
                         )
                     )
             };
@@ -142,7 +144,7 @@ True, value associated with the key will be updated. An error will be thrown oth
             IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-
+            this.NeedsOptions = false;
         }
 
         #endregion
@@ -164,7 +166,7 @@ True, value associated with the key will be updated. An error will be thrown oth
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
                             new Func<JsonObject, List<string>, bool, JsonObject>(JsonObject.Remove),
-                            InputNodes(inputAstNodes)
+                            ReturnInputNodes(inputAstNodes)
                         )
                     )
             };
@@ -192,7 +194,7 @@ True, value associated with the key will be updated. An error will be thrown oth
             IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-
+            this.NeedsOptions = false;
         }
 
         #endregion
@@ -214,7 +216,7 @@ True, value associated with the key will be updated. An error will be thrown oth
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
                             new Func<JsonObject, string, bool, object>(JsonObject.GetValueByKey),
-                            InputNodes(inputAstNodes)
+                            ReturnInputNodes(inputAstNodes)
                         )
                     )
             };
@@ -224,7 +226,7 @@ True, value associated with the key will be updated. An error will be thrown oth
     [NodeName("JsonObject.Merge")]
     [NodeCategory("JsonData")]
     [NodeDescription(@"Merge one JsonObject with one or multiple other JsonObjects.")]
-    [NodeSearchTags("json", "remove", "keys")]
+    [NodeSearchTags("json", "merge", "jsonobject")]
     [IsDesignScriptCompatible]
     public class Merge : JsonOptionsBase
     {
@@ -242,7 +244,7 @@ True, value associated with the key will be updated. An error will be thrown oth
             IEnumerable<PortModel> inPorts,
             IEnumerable<PortModel> outPorts) : base(inPorts, outPorts)
         {
-
+            this.NeedsNesting = false;
         }
 
         #endregion
@@ -264,7 +266,7 @@ True, value associated with the key will be updated. An error will be thrown oth
                 AstFactory.BuildAssignment(GetAstIdentifierForOutputIndex(0),
                     AstFactory.BuildFunctionCall(
                             new Func<JsonObject, List<JsonObject>, JsonOption, JsonObject>(JsonObject.Merge),
-                            InputNodes(inputAstNodes)
+                            ReturnInputNodes(inputAstNodes)
                         )
                     )
             };
