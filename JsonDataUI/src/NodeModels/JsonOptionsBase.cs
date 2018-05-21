@@ -87,6 +87,42 @@ namespace JsonDataUI.Nodes
 
         #endregion
 
+        #region Serialize/Deserialize 
+        protected override void SerializeCore(XmlElement nodeElement, SaveContext context)
+        {
+            base.SerializeCore(nodeElement, context);
+
+            if (nodeElement.OwnerDocument == null) { return; }
+
+            var optionNode = nodeElement.OwnerDocument.CreateElement("jsonOptionNode");
+            var nestingNode = nodeElement.OwnerDocument.CreateElement("jsonNestingNode");
+
+            optionNode.InnerText = this.Option;
+            nestingNode.InnerText = (this.Nesting) ? "true" : "false";
+
+            nodeElement.AppendChild(optionNode);
+            nodeElement.AppendChild(nestingNode);
+        }
+
+        protected override void DeserializeCore(XmlElement nodeElement, SaveContext context)
+        {
+            base.DeserializeCore(nodeElement, context);
+
+            var optionNode = nodeElement.ChildNodes.Cast<XmlNode>().FirstOrDefault(n => n.Name == "jsonOptionNode");
+            var nestingNode = nodeElement.ChildNodes.Cast<XmlNode>().FirstOrDefault(n => n.Name == "jsonNestingNode");
+
+            if (optionNode != null && this.options.Contains(optionNode.InnerText))
+            {
+                this.Option = optionNode.InnerText;
+            }
+
+            if (nestingNode != null)
+            {
+                this.Nesting = nestingNode.InnerText == "true";
+            }
+        } 
+        #endregion
+
         #region Methods
 
         public void PopulateView()
