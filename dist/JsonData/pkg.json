@@ -1,0 +1,18 @@
+{
+  "contains_binaries": true,
+  "contents": "",
+  "dependencies": [],
+  "description": "__Built for Dynamo 2.0__\r\n JsonData is a simple but powerful data managment package based on the JSON format. It makes use of .net dictionaries to create KeyValuePair data structures, with the extra functionality of representing them as JSON structures, so they can easily be imported or exported to files, queried, merged, etc.\r\nIt comes with methods to parse to and from JSON, XML and CSV, which are the most common formats for data sharing. Also, it has the ability of easily create nested structures by simply concatenating keys with a dot as separator.\r\nMore information on https://github.com/alvpickmans/JsonData\r\n",
+  "engine": "dynamo",
+  "engine_metadata": "",
+  "engine_version": "2.0.1.4955",
+  "file_hash": null,
+  "group": "",
+  "keywords": [ "json", "data", "jsonobject", "sort", "merge", "xml", "parse", "csv" ],
+  "license": "MIT",
+  "name": "JsonData",
+  "node_libraries": [ "JsonData, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "JsonDataUI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" ],
+  "repository_url": "https://github.com/alvpickmans/JsonData",
+  "site_url": "",
+  "version": "2.0.1"
+}
