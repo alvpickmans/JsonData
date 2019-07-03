@@ -186,6 +186,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="extra\inputJsonFileSample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="extra\JsonDataSample.dyn">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="extra\outputJsonFileSample.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +207,7 @@
     <ProjectReference Include="..\JsonData\JsonData.csproj">
       <Project>{b8641242-9127-4483-980e-9739e5f8ec23}</Project>
       <Name>JsonData</Name>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +288,14 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <DynamoVersion>2.0</DynamoVersion>
+    <PackageName>JsonData</PackageName>
+    <PackageFolder>$(SolutionDir)dist\$(PackageName)\</PackageFolder>
+    <BinFolder>$(PackageFolder)bin\</BinFolder>
+    <ExtraFolder>$(PackageFolder)extra\</ExtraFolder>
+    <DyfFolder>$(PackageFolder)dyf\</DyfFolder>
+  </PropertyGroup>
   <Target Name="AfterBuild">
     <!-- Get System.Drawing.dll -->
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
@@ -296,13 +313,15 @@
       <Pdbs Include="$(OutDir)*.pdb" />
       <Xmls Include="$(OutDir)*.xml" />
       <Configs Include="$(OutDir)*.config" />
+      <ExtraContent Include="$(OutDir)extra\**\*" />
+      <SourcePackage Include="$(PackageFolder)\**\*" />
     </ItemGroup>
-    <Copy SourceFiles="@(Dlls)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Configs)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <MakeDir Directories="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\dyf" />
-    <MakeDir Directories="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\extra" />
+    <Copy SourceFiles="@(Dlls)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Configs)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(ExtraContent)" DestinationFolder="$(ExtraFolder)\%(RecursiveDir)" />
+    <MakeDir Directories="$(DyfFolder)" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -128,6 +128,7 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=3.10.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.10.1\lib\net45\nunit.framework.dll</HintPath>
@@ -200,11 +201,11 @@
     <None Include="packages\JsonData\extra\inputJsonFileSample.json" />
     <None Include="packages\JsonData\extra\JsonDataSample.dyn" />
     <None Include="packages\JsonData\extra\outputJsonFileSample.json" />
-    <None Include="packages\JsonData\pkg.json" />
+    <None Include="manifest\pkg.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JsonData.Migrations.xml" />
-    <Content Include="JsonData_DynamoCustomization.xml" />
+    <Content Include="manifest\JsonData.Migrations.xml" />
+    <Content Include="manifest\JsonData_DynamoCustomization.xml" />
     <Content Include="packages\JsonData\bin\JsonData_DynamoCustomization.xml" />
     <Content Include="packages\JsonData\bin\JsonData.dll" />
     <Content Include="packages\JsonData\bin\JsonData.Migrations.xml" />
@@ -281,11 +282,19 @@
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   -->
+  <PropertyGroup>
+    <DynamoVersion>2.0</DynamoVersion>
+    <PackageName>JsonData</PackageName>
+    <PackageFolder>$(SolutionDir)dist\$(PackageName)\</PackageFolder>
+    <BinFolder>$(PackageFolder)bin\</BinFolder>
+    <ExtraFolder>$(PackageFolder)extra\</ExtraFolder>
+    <DyfFolder>$(PackageFolder)dyf\</DyfFolder>
+  </PropertyGroup>
   <Target Name="BeforeBuild">
     <ItemGroup>
       <Xmls Include="$(ProjectDir)extern\JsonData\*.xml" />
     </ItemGroup>
-    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(ProjectDir)packages\$(ProjectName)\bin\" />
+    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(BinFolder)" />
   </Target>
   <Target Name="AfterBuild">
     <!-- Get System.Drawing.dll -->
@@ -303,50 +312,23 @@
       <Dlls Include="$(OutDir)*.dll" />
       <Pdbs Include="$(OutDir)*.pdb" />
       <Xmls Include="$(OutDir)*.xml" />
-      <Xmls Include="$(ProjectDir)*.xml" />
+      <Xmls Include="$(ProjectDir)manifest/*.xml" />
+      <PackageJson Include="$(ProjectDir)manifest\pkg.json" />
       <Configs Include="$(OutDir)*.config" />
-      <ToDelete Include="$(ProjectDir)packages\$(SolutionName)\bin\**" />
+      <ToDelete Include="$(BinFolder)**" />
     </ItemGroup>
     <Delete Files="@(ToDelete)" />
-    <Copy SourceFiles="@(Dlls)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <Copy SourceFiles="@(Configs)" DestinationFolder="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\bin\" />
-    <MakeDir Directories="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\dyf" />
-    <MakeDir Directories="$(SolutionDir)$(SolutionName)\packages\$(SolutionName)\extra" />
+    <Copy SourceFiles="@(Dlls)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Xmls)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(Configs)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(PackageJson)" DestinationFolder="$(PackageFolder)" />
+    <!--<MakeDir Directories="$(ExtraFolder)" />
+    <MakeDir Directories="$(DyfFolder)" />-->
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>echo Configuration: "$(Configuration)"
-
-if "$(Configuration)" == "Debug" goto Dynamo1
-if "$(Configuration)" == "Debug 2.0" goto Dynamo2
-
-:Dynamo1
-echo Copying to Dynamo Core 1.3
-if not exist "%25appdata%25\Dynamo\Dynamo Core\1.3\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Core\1.3\packages\JsonData"
-del /s /q "%25appdata%25\Dynamo\Dynamo Core\1.3\packages\JsonData\"
-xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Core\1.3\packages\JsonData"
-
-echo Copying to Dynamo Revit 1.3
-if not exist "%25appdata%25\Dynamo\Dynamo Revit\1.3\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Revit\1.3\packages\JsonData"
-del /s /q "%25appdata%25\Dynamo\Dynamo Revit\1.3\packages\JsonData\"
-xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Revit\1.3\packages\JsonData"
-goto exit
-
-:Dynamo2
-echo Copying to Dynamo Core 2
-if not exist "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData"
-del /s /q "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData\"
-xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Core\2.0\packages\JsonData"
-
-echo Copying to Dynamo Revit 2
-if not exist "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData" mkdir "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData"
-del /s /q "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData\"
-xcopy /y /s "$(ProjectDir)packages\JsonData" "%25appdata%25\Dynamo\Dynamo Revit\2.0\packages\JsonData"
-goto exit
-
-
-:exit</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
