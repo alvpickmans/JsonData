@@ -204,8 +204,12 @@
     <None Include="manifest\pkg.json" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="manifest\JsonData.Migrations.xml" />
-    <Content Include="manifest\JsonData_DynamoCustomization.xml" />
+    <Content Include="manifest\JsonData.Migrations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="manifest\JsonData_DynamoCustomization.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="packages\JsonData\bin\JsonData_DynamoCustomization.xml" />
     <Content Include="packages\JsonData\bin\JsonData.dll" />
     <Content Include="packages\JsonData\bin\JsonData.Migrations.xml" />
@@ -312,12 +316,10 @@
       <Dlls Include="$(OutDir)*.dll" />
       <Pdbs Include="$(OutDir)*.pdb" />
       <Xmls Include="$(OutDir)*.xml" />
-      <Xmls Include="$(ProjectDir)manifest/*.xml" />
-      <PackageJson Include="$(ProjectDir)manifest\pkg.json" />
+      <Xmls Include="$(ProjectDir)\manifest\*.xml" />
+      <PackageJson Include="$(ProjectDir)\manifest\*pkg.json" />
       <Configs Include="$(OutDir)*.config" />
-      <ToDelete Include="$(BinFolder)**" />
     </ItemGroup>
-    <Delete Files="@(ToDelete)" />
     <Copy SourceFiles="@(Dlls)" DestinationFolder="$(BinFolder)" />
     <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(BinFolder)" />
     <Copy SourceFiles="@(Xmls)" DestinationFolder="$(BinFolder)" />

@@ -295,7 +295,18 @@
     <BinFolder>$(PackageFolder)bin\</BinFolder>
     <ExtraFolder>$(PackageFolder)extra\</ExtraFolder>
     <DyfFolder>$(PackageFolder)dyf\</DyfFolder>
+    <DynamoCore>$(AppData)\Dynamo\Dynamo Core\$(DynamoVersion)\packages</DynamoCore>
+    <DynamoRevit>$(AppData)\Dynamo\Dynamo Revit\$(DynamoVersion)\packages</DynamoRevit>
+    <PackageCoreFolder>$(DynamoCore)\$(PackageName)</PackageCoreFolder>
+    <PackageRevitFolder>$(DynamoRevit)\$(PackageName)</PackageRevitFolder>
   </PropertyGroup>
+
+  <Target Name="Clean">
+    <RemoveDir Directories="$(PackageFolder)"/>
+    <RemoveDir Directories="$(PackageCoreFolder)"/>
+    <RemoveDir Directories="$(PackageRevitFolder)"/>
+  </Target>
+  
   <Target Name="AfterBuild">
     <!-- Get System.Drawing.dll -->
     <GetReferenceAssemblyPaths TargetFrameworkMoniker=".NETFramework, Version=v2.0">
@@ -312,6 +323,8 @@
       <Dlls Include="$(OutDir)*.dll" />
       <Pdbs Include="$(OutDir)*.pdb" />
       <Xmls Include="$(OutDir)*.xml" />
+      <Xmls Include="$(SolutionDir)\JsonData\manifest\*.xml" />
+      <PackageJson Include="$(SolutionDir)\JsonData\manifest\*pkg.json" />
       <Configs Include="$(OutDir)*.config" />
       <ExtraContent Include="$(OutDir)extra\**\*" />
       <SourcePackage Include="$(PackageFolder)\**\*" />
@@ -320,8 +333,19 @@
     <Copy SourceFiles="@(Pdbs)" DestinationFolder="$(BinFolder)" />
     <Copy SourceFiles="@(Xmls)" DestinationFolder="$(BinFolder)" />
     <Copy SourceFiles="@(Configs)" DestinationFolder="$(BinFolder)" />
+    <Copy SourceFiles="@(PackageJson)" DestinationFolder="$(PackageFolder)" />
     <Copy SourceFiles="@(ExtraContent)" DestinationFolder="$(ExtraFolder)\%(RecursiveDir)" />
     <MakeDir Directories="$(DyfFolder)" />
+
+    <ItemGroup>
+      <SourcePackage Include="$(PackageFolder)**\*" />
+    </ItemGroup>
+    
+    <!--Copying to Package Folder-->
+    <Message Importance="high" Text="Dynamo Core Package Folder = $(DynamoCore)" />
+    <Message Importance="high" Text="Dynamo Revit Package Folder = $(DynamoRevit)" />
+    <Copy SourceFiles="@(SourcePackage)" Condition="Exists($(DynamoCore))" DestinationFolder="$(PackageCoreFolder)\%(RecursiveDir)" />
+    <Copy SourceFiles="@(SourcePackage)" Condition="Exists($(DynamoRevit))" DestinationFolder="$(PackageRevitFolder)\%(RecursiveDir)" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
